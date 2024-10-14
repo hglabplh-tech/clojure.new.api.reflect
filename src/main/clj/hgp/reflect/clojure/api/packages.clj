@@ -37,8 +37,3 @@
 
 
     ))
-
-.setScanners(Scanners.values())     // all standard scanners
-.filterInputsBy(new FilterBuilder()
-                    .includePackage("com.my.project")
-                    .excludePackage("com.my.project.exclude")));
