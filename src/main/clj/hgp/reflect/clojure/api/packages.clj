@@ -4,6 +4,8 @@
            (org.reflections.scanners Scanner Scanners SubTypesScanner)
            (org.reflections.util ConfigurationBuilder FilterBuilder)))
 
+
+;; have to rewrite
 (defn reflect-config-builder [pkg-names]
   (let [config-builder (ConfigurationBuilder.)
         filter-builder (FilterBuilder.)]
@@ -14,7 +16,7 @@
     ))
 
 (defn make-cloj-seq
-  ^{:doc "the java list of packages is converted to a clojure sequence "}
+  "the java list of packages is converted to a clojure sequence "
   [pkg-jlist]
   (let [the-seq (sequence ^Set pkg-jlist)]
     the-seq))
