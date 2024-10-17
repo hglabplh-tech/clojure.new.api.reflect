@@ -1,41 +1,17 @@
 (ns hgp.reflect.clojure.api.packages
   (:import (java.util Set)
+           (java.lang Package)
            (org.reflections Reflections)
-           (org.reflections.scanners Scanner Scanners SubTypesScanner)
-           (org.reflections.util ConfigurationBuilder FilterBuilder)))
+           (org.reflections.scanners Scanners)
+           (org.reflections.util ConfigurationBuilder FilterBuilder)
+           (hgp.reflect.clojure.api.utils GetPackagesAndClasses)))
 
 
-;; have to rewrite
-(defn reflect-config-builder [pkg-names]
-  (let [config-builder (ConfigurationBuilder.)
-        filter-builder (FilterBuilder.)]
-    (.includePackage filter-builder pkg-names) ;; here to do write  loop
-    (.forPackages config-builder pkg-names)
-    (.setScanners config-builder Scanners/values)
-    (.filterInputsBy config-builder filter-builder)
-    ))
-
-(defn make-cloj-seq
-  "the java list of packages is converted to a clojure sequence "
-  [pkg-jlist]
-  (let [the-seq (sequence ^Set pkg-jlist)]
-    the-seq))
-
-(defn list-packages
-   "this function lists the content of a given packages (more than one) by namr"
-  [pkg-name]
-  (let [config-builder (reflect-config-builder pkg-name)
-        reflections (Reflections. ^ConfigurationBuilder config-builder)
-        ]
-    ;;(make-cloj-seq pkg-jlist)
-    ))
 
 (defn list-package
-  "This function lists a specific package"
+  ^{:doc "this function lists the content of a given package by namr"}
   [pkg-name]
-  (let [reflections (Reflections. ^java.lang.String pkg-name)
-        pkgs (.get ^Reflections reflections
-                   ^java.lang.Class (Class/forName "java.lang.Package"))]
-
-
+  (let [pkg-jlist (GetPackagesAndClasses/findAllClassesUsingClassLoader pkg-name)]
+    pkg-jlist
     ))
+

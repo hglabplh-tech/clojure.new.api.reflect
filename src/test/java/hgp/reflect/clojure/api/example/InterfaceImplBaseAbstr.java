@@ -1,13 +1,14 @@
 package hgp.reflect.clojure.api.example;
 
 public abstract class InterfaceImplBaseAbstr
-        extends InterfaceImplBase implements InterfaceEx {
+        implements InterfaceEx {
 
-    public enum MyPlan{
+    public enum MyPlan {
         TEST_OK(1, "test-ok"),
         TEST_NOK(6, "test-nok"),
         TEST_OK_CLONE(7, "the-clone"),
-        TEST_MAYBE_OK(8, "test-maybe-ok"),;
+        TEST_MAYBE_OK(8, "test-maybe-ok"),
+        ;
 
         private final Integer codeNum;
 
@@ -25,9 +26,5 @@ public abstract class InterfaceImplBaseAbstr
         public String displayName() {
             return displayName;
         }
-
-
-
-
     }
 }

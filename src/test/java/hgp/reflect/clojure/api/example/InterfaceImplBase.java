@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class InterfaceImplBase {
 
-    private InterfaceImplBase () {
+    private InterfaceImplBase() {
 
     }
 
@@ -49,7 +49,7 @@ public class InterfaceImplBase {
         }
 
 
-        @AppAnnot
+
         public byte[] getBytes() {
             return firstName.getBytes();
         }
