@@ -7,7 +7,11 @@
 
 (deftest hgp.package.list.test
   (testing "This test checks if the list-pkgs works correctly"
-    (pprint (pkgs/list-package "hgp.reflect.clojure.api.example"))
-    ))
+    (let [result (pkgs/list-packages
+                   "hgp.reflect.clojure.api.example"
+                   "hgp.reflect.clojure.api.app_exam")]
+      (pprint (map type (first result) ))
+      (pprint result)
+    )))
 
 (run-tests)

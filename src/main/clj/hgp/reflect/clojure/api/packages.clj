@@ -8,10 +8,10 @@
 
 
 
-(defn list-package
+(defn list-packages
   ^{:doc "this function lists the content of a given package by namr"}
-  [pkg-name]
-  (let [pkg-jlist (GetPackagesAndClasses/findAllClassesUsingClassLoader pkg-name)]
+  [& pkg-names]
+  (let [pkg-jlist (map GetPackagesAndClasses/findAllClassesUsingClassLoader pkg-names)]
     pkg-jlist
     ))
 

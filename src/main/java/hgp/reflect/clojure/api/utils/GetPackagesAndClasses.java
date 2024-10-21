@@ -7,6 +7,8 @@
 package hgp.reflect.clojure.api.utils;
 
 
+import clojure.lang.IPersistentVector;
+
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,12 +17,14 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static hgp.reflect.clojure.api.utils.ClojFunctionalUtils.getListAsLazyVector;
+
 
 /**
  * The utility class  */
 public class GetPackagesAndClasses {
 
-    public static List<Class> findAllClassesUsingClassLoader(String packageName) {
+    public static IPersistentVector findAllClassesUsingClassLoader(String packageName) {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         assert classLoader != null;
         String path = packageName.replace('.', '/');
@@ -35,7 +39,7 @@ public class GetPackagesAndClasses {
                         throw new RuntimeException(e);
                     }
                 });
-        return classes;
+        return getListAsLazyVector(classes);
 
 }
 
