@@ -2,7 +2,6 @@
   (:require [clojure.test :refer :all]
             [clojure.pprint :refer :all]
             [hgp.reflect.clojure.api.reflect-field :as rfield]
-            [hgp.reflect.clojure.api.reflect-types :as rtypes]
             [hgp.reflect.clojure.api.reflect-class :as rcl]))
 
 (deftest get-class.test

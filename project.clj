@@ -13,7 +13,7 @@
 
 
 
-  :javac-options ["-target" "22" "-source" "22" "-Xlint:-options"]
+  :javac-options ["-target" "17" "-source" "17" "-Xlint:-options"]
   :scm {:name "git"
         :url  "https://github.com/hglabplh-tech/clojure.new.api.reflect.git"}
 

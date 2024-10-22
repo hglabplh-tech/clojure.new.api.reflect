@@ -15,9 +15,9 @@ import static hgp.reflect.clojure.api.utils.ClojFunctionalUtils.getArrayAsLazyVe
 
 public class ClassUtil {
 
-    private final Class theClass;
+    private final Class<?> theClass;
 
-    public ClassUtil (@Nonnull Class theClass) {
+    public ClassUtil (@Nonnull Class<?> theClass) {
         this.theClass = theClass;
     }
 
@@ -42,7 +42,7 @@ public class ClassUtil {
     }
 
     public @Nonnull IPersistentVector getConstructors() {
-        Constructor[] constrArray =
+        Constructor<?>[] constrArray =
                 this.theClass.getConstructors();
         return getArrayAsLazyVector(constrArray);
     }
