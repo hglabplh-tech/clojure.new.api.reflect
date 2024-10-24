@@ -31,8 +31,13 @@ public class ClassUtil {
 
 
     // here have to think about the name ;; annot are a special case
-    public @Nonnull IPersistentVector getPublicAnnotations() {
+    public @Nonnull IPersistentVector getPublicAnnotations(Class<Annotation> annotationClass) {
         Annotation[] annots = theClass.getAnnotations();
+        return getArrayAsLazyVector(annots);
+    }
+
+    public @Nonnull IPersistentVector getDeclAnnotsByType(Class<Annotation> annotationClass) {
+        Annotation[] annots = theClass.getDeclaredAnnotationsByType(annotationClass);
         return getArrayAsLazyVector(annots);
     }
 
@@ -47,11 +52,31 @@ public class ClassUtil {
         return getArrayAsLazyVector(constrArray);
     }
 
+    public @Nonnull IPersistentVector getAllConstructors() {
+        Constructor<?>[] constrArray =
+                this.theClass.getDeclaredConstructors();
+        return getArrayAsLazyVector(constrArray);
+    }
+
+    /**
+     * Get all methods inside the class
+     * @return a Vector with all declared methods either private
+     * or public
+     *
+     */
     public @Nonnull IPersistentVector getAllMethods() {
-        Method[] methods = theClass.getDeclaredMethods();
+        Method[] methods = this.theClass.getDeclaredMethods();
         return getArrayAsLazyVector(methods);
     }
 
+    public @Nonnull IPersistentVector getVisibleMethods () {
+        return getArrayAsLazyVector(this.theClass.getMethods());
+    }
+
+    /**
+     * Get all public fields inside the class
+     * @return a vector with all public fields
+     */
     public @Nonnull IPersistentVector getPublicFields() {
         Field[] fields = theClass.getFields();
         return getArrayAsLazyVector(fields);
@@ -62,15 +87,62 @@ public class ClassUtil {
         return getArrayAsLazyVector(fields);
     }
 
-
-
-    public static @Nonnull Class<?> getFieldType (@Nonnull Field field) {
-        return field.getType();
+    public @Nonnull IPersistentVector getGenericInterfaces() {
+        return getArrayAsLazyVector(this.theClass.getGenericInterfaces());
     }
 
-    public static @Nonnull Integer getFieldModifier (@Nonnull Field field) {
-        return field.getModifiers();
+    public @Nonnull Type getGenericSuperClass() {
+        return this.theClass.getGenericSuperclass();
     }
+
+    public @Nonnull IPersistentVector getGetPublicSubClasses () {
+        return getArrayAsLazyVector(this.theClass.getClasses());
+    }
+    public @Nonnull IPersistentVector getAllSubClasses() {
+        return getArrayAsLazyVector(this.theClass.getDeclaredClasses());
+    }
+
+    public static boolean isClassAAnnotation (Class<?> classToCheck) {
+        return classToCheck.isAnnotation();
+    }
+
+    public boolean isClassSynthetic (Class<?> classToCheck) {
+        return classToCheck.isSynthetic();
+    }
+
+    public boolean isClassSealed (Class<?> classToCheck) {
+        return classToCheck.isSealed();
+    }
+
+    public boolean isClassEnum (Class<?> classToCheck) {
+        return classToCheck.isEnum();
+    }
+
+    public boolean isClassAnonymous (Class<?> classToCheck) {
+        return classToCheck.isAnonymousClass();
+    }
+
+    public boolean isClassArray (Class<?> classToCheck) {
+        return classToCheck.isArray();
+    }
+
+    public boolean isClassMember (Class<?> classToCheck) {
+        return classToCheck.isMemberClass();
+    }
+
+    public boolean isClassInterface (Class<?> classToCheck) {
+        return classToCheck.isInterface();
+    }
+
+    public boolean isClassLocal (Class<?> classToCheck) {
+        return classToCheck.isLocalClass();
+    }
+
+    public boolean isClassPrimitive (Class<?> classToCheck) {
+        return classToCheck.isPrimitive();
+    }
+
+
 
 
 }
