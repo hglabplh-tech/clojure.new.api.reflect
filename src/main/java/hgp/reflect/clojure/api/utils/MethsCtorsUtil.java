@@ -62,31 +62,31 @@ public class MethsCtorsUtil {
         return method.getGenericReturnType();
     }
 
-    public static  boolean isBridgeMethod(Method method){
+    public static  Boolean isBridgeMethod(Method method){
         return method.isBridge();
     }
 
-    public static  boolean isDefaultMethod(Method method){
+    public static  Boolean isDefaultMethod(Method method){
         return method.isDefault();
     }
 
-    public static  boolean isSyntheticMethod(Method method){
+    public static  Boolean isSyntheticMethod(Method method){
         return method.isSynthetic();
     }
 
-    public static  boolean isVarArgsMethod(Method method){
+    public static  Boolean isVarArgsMethod(Method method){
         return method.isVarArgs();
     }
 
-    public static  boolean isSyntheticCtor(Constructor<?> ctor){
+    public static  Boolean isSyntheticCtor(Constructor<?> ctor){
         return ctor.isSynthetic();
     }
 
-    public static  boolean isVarArgsCtor(Constructor<?> ctor){
+    public static  Boolean isVarArgsCtor(Constructor<?> ctor){
         return ctor.isVarArgs();
     }
 
-    public static  boolean isAnnotPresentCtor(Constructor<?> ctor,
+    public static  Boolean isAnnotPresentCtor(Constructor<?> ctor,
                                               Class<? extends Annotation>
                                                       annotation){
         return ctor.isAnnotationPresent(annotation);

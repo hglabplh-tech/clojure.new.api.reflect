@@ -1,6 +1,6 @@
 (ns hgp.reflect.clojure.api.reflect-types
   (:import (java.lang.reflect Modifier Constructor Method)
-           (hgp.reflect.clojure.api.utils ClassUtil MethsCtorsUtil)))
+           (hgp.reflect.clojure.api.utils ClassUtil MethsCtorsUtil FieldsUtil)))
 
 
 (defn is-annotation [^Class class-to-check]
@@ -51,6 +51,11 @@
 (defn is-bridge-meth [^Method meth-to-check]
   (MethsCtorsUtil/isBridgeMethod meth-to-check))
 
+(defn is-enum-constant [field]
+  (FieldsUtil/isEnumConst field))
+
+(defn is-synthetic-field [field]
+  (FieldsUtil/isSynthetic field))
 
 
 (defn- get-modifiers-readable [mod-int]
@@ -95,7 +100,25 @@
                        }]
     meth-attr-map))
 
+(defn- get-field-attributes-readable [field]
+  (let [ctor-attr-map {:attr-enum-const (is-enum-constant field)
+                       :attr-synthetic (is-synthetic-field field)
+                       }]
+    ctor-attr-map))
 
+(defn attributes-bool-filter [the-map-to-filter]
+  (loop [modifier-keys (keys  the-map-to-filter)
+         result []]
+    (if (empty?  modifier-keys)
+      result
+      (let [act-key (first modifier-keys)
+            value (get the-map-to-filter act-key)]
+        (recur (rest modifier-keys) (if value
+                                      (conj result act-key)
+                                      result))
+        ))
+    )
+  )
 
 (defn attributes-bool-filter [the-map-to-filter]
   (loop [modifier-keys (keys  the-map-to-filter)
@@ -114,13 +137,17 @@
 
 
 (defn get-item-modifiers [mod-int]
-  (attributes-bool-filter (get-modifiers-readable mod-int)))
+  (get-modifiers-readable mod-int))
 
 (defn get-class-attributes [class-to-check]
-  (attributes-bool-filter (get-class-attributes-readable class-to-check)))
+  (get-class-attributes-readable class-to-check))
 
 (defn get-ctor-attributes [ctor-to-check]
-  (attributes-bool-filter (get-ctor-attributes-readable ctor-to-check)))
+  (get-ctor-attributes-readable ctor-to-check))
 
 (defn get-meth-attributes [meth-to-check]
-  (attributes-bool-filter (get-meth-attributes-readable meth-to-check)))
+  (get-meth-attributes-readable meth-to-check))
+
+(defn get-field-attributes [field]
+    (get-field-attributes-readable field))
+

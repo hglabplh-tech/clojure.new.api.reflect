@@ -1,5 +1,6 @@
 (ns hgp.reflect.clojure.api.reflect-class
-  (:require [hgp.reflect.clojure.api.packages :as pkg]            )
+  (:require [hgp.reflect.clojure.api.packages :as pkg]
+            [hgp.reflect.clojure.api.reflect-types :as rtypes])
   (:import (java.lang.annotation Annotation)
     (hgp.reflect.clojure.api.utils ClassUtil)))
 
@@ -61,3 +62,6 @@
 
 (defn get-the-class [^ClassUtil util]
   (.getTheClass util))
+
+(defn get-class-attributes [clazz]
+         [(rtypes/get-class-attributes clazz)])

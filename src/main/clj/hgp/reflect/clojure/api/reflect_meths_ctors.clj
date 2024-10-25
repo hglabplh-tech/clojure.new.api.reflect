@@ -14,7 +14,8 @@
 (defn get-all-ctor-and-type-modifiers [& ctors]
   (map (fn [ctor]
          {ctor [(get-ctor-param-types ctor) (rtypes/get-item-modifiers
-                                          (get-ctor-modifier ctor))]}
+                                          (get-ctor-modifier ctor))
+                (rtypes/get-ctor-attributes ctor)]}
          )
        ctors))
 
@@ -38,6 +39,7 @@
 (defn get-all-meth-and-type-modifiers [& meths]
   (map (fn [meth]
          {meth [(get-meth-param-types meth) (rtypes/get-item-modifiers
-                                              (get-method-modifier meth))]}
+                                              (get-method-modifier meth))
+                (rtypes/get-meth-attributes meth)]}
          )
        meths))
