@@ -140,6 +140,13 @@ public class ClassUtil {
     public @Nonnull IPersistentVector getGenericInterfaces() {
         return getArrayAsLazyVector(this.theClass.getGenericInterfaces());
     }
+    /**
+     * Here the Interfaces are returned
+     * @return the generic interfaces
+     */
+    public @Nonnull IPersistentVector getInterfaces() {
+        return getArrayAsLazyVector(this.theClass.getInterfaces());
+    }
 
     /**
      * this method return a possible generic super-class-type
@@ -147,6 +154,46 @@ public class ClassUtil {
      */
     public @Nonnull Type getGenericSuperClass() {
         return this.theClass.getGenericSuperclass();
+    }
+
+    /**
+     * this method return a possible super-class-type (Class )
+     * @return return the class-type
+     */
+    public @Nonnull Class<?> getSuperClass() {
+        return this.theClass.getSuperclass();
+    }
+
+    /**
+     * If this Class object represents a local or anonymous class within a constructor, returns a Constructor object representing the immediately enclosing constructor of the underlying class. Returns null otherwise. In particular, this method returns null if the underlying class is a local or anonymous class
+     * immediately enclosed by a type declaration, instance initializer or static initializer.
+     * @return the enclosing constructor
+     */
+    public @Nonnull Constructor<?>  getEnclosingConstructor() {
+        return this.theClass.getEnclosingConstructor();
+    }
+
+    /**
+     *If this Class object represents a local or anonymous class within a method, returns a Method object representing the immediately enclosing method of the underlying class.
+     * Returns null otherwise. In particular, this method
+     * returns null if the underlying class is a local or anonymous class immediately
+     * enclosed by a type declaration, instance initializer or static initializer.
+     *
+     * @return the enclosing method
+     */
+    public @Nonnull Method  getEnclosingMethod() {
+        return this.theClass.getEnclosingMethod();
+    }
+
+    /**
+     * If the class or interface represented by this Class object is a member of another
+     * class, returns the Class object representing the class in which it was declared.
+     * This method returns null if this class or interface is not a member of any other class. If this Class object
+     * represents an array class, a primitive type, or void,then this method returns null.
+     * @return the enclosing class
+     */
+    public @Nonnull Class<?>  getEnclosingClass() {
+        return this.theClass.getEnclosingClass();
     }
 
     /**

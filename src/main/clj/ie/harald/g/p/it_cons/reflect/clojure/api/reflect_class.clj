@@ -15,6 +15,13 @@
                            result))  (apply pkg/list-packages pkg-names)))))]
     the-clazz))
 
+(defn get-all-classes-of-pkg [clazz-name & pkg-names]
+  (let [the-clazz-vect (map
+                         (fn [element]
+                         (ClassUtil. (first (first element))))
+                         (apply pkg/list-packages pkg-names))]
+    the-clazz-vect))
+
 (defn get-all-ctors [^ClassUtil util]
   (.getAllConstructors util))
 
@@ -45,8 +52,14 @@
 (defn get-generic-interfaces [^ClassUtil util]
   (.getGenericInterfaces util))
 
+(defn get-interfaces [^ClassUtil util]
+  (.getInterfaces util))
+
 (defn get-generic-super-class [^ClassUtil util]
   (.getGenericSuperClass util))
+
+(defn get-super-class [^ClassUtil util]
+  (.getSuperClass util))
 
 (defn get-public-annotations [^ClassUtil util]
   (.getPublicAnnotations util))
@@ -65,3 +78,12 @@
 
 (defn get-class-attributes [clazz]
          [(rtypes/get-class-attributes clazz)])
+
+(defn get-enclosing-constructor [^ClassUtil util]
+  (.getEnclosingConstructor util))
+
+(defn get-enclosing-class [^ClassUtil util]
+  (.getEnclosingClass util))
+
+(defn get-enclosing-method [^ClassUtil util]
+  (.getEnclosingMethod util))
