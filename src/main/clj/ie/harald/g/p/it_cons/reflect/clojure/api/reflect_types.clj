@@ -137,17 +137,17 @@
 
 
 (defn get-item-modifiers [mod-int]
-  (get-modifiers-readable mod-int))
+  (attributes-bool-filter (get-modifiers-readable mod-int)))
 
 (defn get-class-attributes [class-to-check]
-  (get-class-attributes-readable class-to-check))
+  (attributes-bool-filter (get-class-attributes-readable class-to-check)))
 
 (defn get-ctor-attributes [ctor-to-check]
-  (get-ctor-attributes-readable ctor-to-check))
+  (attributes-bool-filter (get-ctor-attributes-readable ctor-to-check)))
 
 (defn get-meth-attributes [meth-to-check]
-  (get-meth-attributes-readable meth-to-check))
+  (attributes-bool-filter (get-meth-attributes-readable meth-to-check)))
 
 (defn get-field-attributes [field]
-    (get-field-attributes-readable field))
+  (attributes-bool-filter (get-field-attributes-readable field)))
 

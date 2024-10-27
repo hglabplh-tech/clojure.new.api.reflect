@@ -5,7 +5,8 @@
             [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-field :as fields]
             [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-annotation :as annot]
             [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-types :as types])
-  (:import (ie.harald.g.p.it_cons.reflect.clojure.api.utils ClassUtil)))
+  (:import (java.lang Class)
+    (ie.harald.g.p.it_cons.reflect.clojure.api.utils ClassUtil)))
 
 
 (declare retrieve-class-body
