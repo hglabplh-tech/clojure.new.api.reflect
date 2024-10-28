@@ -10,7 +10,7 @@
 ;; rewrite this using the classpath namespace and
 ;; build the new logic in class-path
 (defn list-packages
-  ^{:doc "this function lists the content of a given package by namr"}
+  "this function lists the content of a given package by name"
   [& pkg-names]
   (let [pkg-jlist (map GetPackagesAndClasses/findAllClassesUsingClassLoader pkg-names)]
     pkg-jlist
