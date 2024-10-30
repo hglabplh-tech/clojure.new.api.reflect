@@ -12,8 +12,18 @@ import static ie.harald.g.p.it_cons.reflect.clojure.api.utils.ClojFunctionalUtil
 
 public class MethsCtorsUtil {
 
+    public static @Nonnull String getCtorName (
+            @Nonnull Constructor<?> ctor) {
+        return ctor.getName();
+    }
+
+    public static @Nonnull String getMethodName (
+            @Nonnull Method meth) {
+        return meth.getName();
+    }
+
     public static @Nonnull Integer getCtorParamCount (
-            @Nonnull Constructor ctor) {
+            @Nonnull Constructor<?> ctor) {
         return ctor.getParameterCount();
     }
 

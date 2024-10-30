@@ -10,6 +10,11 @@ import java.lang.reflect.Type;
 import static ie.harald.g.p.it_cons.reflect.clojure.api.utils.ClojFunctionalUtils.getArrayAsLazyVector;
 
 public class FieldsUtil {
+
+    public static @Nonnull String getFieldName (
+            @Nonnull Field field) {
+        return field.getName();
+    }
     public static @Nonnull Class<?> getFieldType (@Nonnull Field field) {
         return field.getType();
     }

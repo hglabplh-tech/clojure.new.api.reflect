@@ -4,7 +4,8 @@
             [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-meths-ctors :as meths]
             [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-field :as fields]
             [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-annotation :as annot]
-            [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-types :as types])
+            [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-types :as types]
+            [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-enum-rec :as er-refl])
   (:import (java.lang Class)
     (ie.harald.g.p.it_cons.reflect.clojure.api.utils ClassUtil)))
 
@@ -81,6 +82,9 @@
 
     ))
 
+(defn rec-or-enum? [clazz]
+  (or (types/is-enum clazz) (types/is-record clazz)))
+
 (defn really-compile [^ClassUtil clazz-util]
   (let [class-def (define-direct-class-parameters clazz-util)
         the-class (rcl/get-the-class clazz-util)
@@ -88,7 +92,10 @@
                                         (rcl/get-all-fields clazz-util)
                                         (rcl/get-all-methods clazz-util)
                                         (rcl/get-all-sub-classes clazz-util))]
-    [:compilation class-def class-body]))
+    (if (rec-or-enum? the-class)
+      [:compilation (er-refl/handle-enum-rec the-class class-def class-body)]
+      [:compilation class-def class-body])
+    ) )
 
 
 (defn compile-class [^String canonical-nane]

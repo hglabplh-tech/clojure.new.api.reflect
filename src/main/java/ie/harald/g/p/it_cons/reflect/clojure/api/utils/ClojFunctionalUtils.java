@@ -1,8 +1,10 @@
 package ie.harald.g.p.it_cons.reflect.clojure.api.utils;
 
-import clojure.lang.IPersistentVector;
-import clojure.lang.LazilyPersistentVector;
+import clojure.lang.*;
 
+import javax.annotation.Nonnull;
+import java.lang.reflect.GenericDeclaration;
+import java.lang.reflect.TypeVariable;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -31,4 +33,34 @@ public class ClojFunctionalUtils {
     }
 
 
+    /**
+     *
+     * @param enumMap
+     * @param name
+     * @param ordinal
+     * @return
+     */
+    public static @Nonnull IPersistentMap
+    makeKeyWordFromEnumAndAdd(@Nonnull  IPersistentMap enumMap,
+                                             @Nonnull  String name, Integer ordinal) {
+
+        Keyword word = Keyword.intern(name);
+        enumMap.assocEx(word, ordinal);
+        return enumMap;
+    }
+
+    public static  @Nonnull  IPersistentMap
+        retrieveGenericParamTypesAsMeta(IPersistentVector paramVect) {
+        IPersistentMap resultMap = PersistentArrayMap.EMPTY;
+        for (int index = 0;
+             index < paramVect.length();
+             index++) {
+            TypeVariable<?> typeVar = (TypeVariable<?>)paramVect.nth(index);
+            String varName = typeVar.getName();
+            String typeName = typeVar.getTypeName();
+            resultMap.assocEx(index, Tuple.create(varName, typeName));
+
+        }
+        return resultMap;
+    }
 }

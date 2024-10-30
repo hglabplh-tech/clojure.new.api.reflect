@@ -305,4 +305,12 @@ public class ClassUtil {
     public static boolean isClassPrimitive (Class<?> classToCheck) {
         return classToCheck.isPrimitive();
     }
+    /**
+     * Returns true if the class is a record otherwise false
+     * @param classToCheck the class to check
+     * @return true / false
+     */
+    public static boolean isClassRecord (Class<?> classToCheck) {
+        return classToCheck.isRecord();
+    }
 }

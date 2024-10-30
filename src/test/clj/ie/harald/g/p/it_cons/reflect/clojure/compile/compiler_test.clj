@@ -14,4 +14,22 @@
       (pprint comp-result)
     )))
 
+(deftest enum-class-compile
+  (testing "This is a test for enum classes / check if compile works"
+    (let  [comp-result
+           (comp/compile-class
+             "ie.harald.g.p.it_cons.reflect.clojure.api.example.annot_rec.MyEnum"
+             )]
+      (pprint comp-result)
+      )))
+
+(deftest record-class-compile
+  (testing "This is a test for record classes / check if compile works"
+    (let  [comp-result
+           (comp/compile-class
+             "ie.harald.g.p.it_cons.reflect.clojure.api.example.annot_rec.MyTestRecord"
+             )]
+      (pprint comp-result)
+      )))
+
 (run-tests)
