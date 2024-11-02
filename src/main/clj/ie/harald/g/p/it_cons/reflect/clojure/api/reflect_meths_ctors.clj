@@ -18,6 +18,22 @@
   [ctor]
   (MethsCtorsUtil/getCtorParamCount ctor))
 
+(defn get-ctor-exception-types
+  "Get the constructors exception types
+  @param : the ctor we look for"
+  {:added "0.90"
+   :static true}
+  [ctor]
+  (MethsCtorsUtil/getCtorExceptionTypes ctor))
+
+(defn get-ctor-gen-exception-types
+  "Get the constructors generic exception types
+  @param : the ctor we look for"
+  {:added "0.90"
+   :static true}
+  [ctor]
+  (MethsCtorsUtil/getCtorGenericExTypes ctor))
+
 (defn get-ctor-param-types
   "Get the constructors parameter types
   @param : the ctor we look for"
@@ -117,3 +133,19 @@
                 (rtypes/get-meth-attributes meth)]}
          )
        meths))
+
+(defn get-meth-exception-types
+  "Get the methods exception types
+  @param : the ctor we look for"
+  {:added "0.90"
+   :static true}
+  [meth]
+  (MethsCtorsUtil/getMethExceptionTypes meth))
+
+(defn get-meth-gen-exception-types
+  "Get the methods generic exception types
+  @param : the ctor we look for"
+  {:added "0.90"
+   :static true}
+  [meth]
+  (MethsCtorsUtil/getMethGenericExTypes meth))

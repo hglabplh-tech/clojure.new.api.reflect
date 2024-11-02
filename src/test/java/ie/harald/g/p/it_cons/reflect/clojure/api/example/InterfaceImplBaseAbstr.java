@@ -2,7 +2,25 @@ package ie.harald.g.p.it_cons.reflect.clojure.api.example;
 
 public abstract class InterfaceImplBaseAbstr
         implements InterfaceEx {
+    @Override
+    public void newDocument(DocumentExample doc) throws DocumentException {
 
+    }
+
+    @Override
+    public void retrieveDocument(DocumentExample doc) throws DocumentException {
+
+    }
+
+    @Override
+    public void updateDocument(DocumentExample doc) throws DocumentException {
+
+    }
+
+    @Override
+    public void deleteDocument(DocumentExample doc) throws DocumentException {
+
+    }
     public enum MyPlan {
         TEST_OK(1, "test-ok"),
         TEST_NOK(6, "test-nok"),

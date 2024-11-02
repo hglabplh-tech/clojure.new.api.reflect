@@ -40,10 +40,18 @@
         ctor-attributes (types/get-ctor-attributes ctor)
         ctor-parm-types (meths/get-ctor-param-types ctor)
         ctor-annots (annot/get-ctor-annots ctor)
-        ctor-p-annots (annot/get-ctor-param-annots ctor)]
-  [:ctor ctor-name [:general ctor-general] [:attr ctor-attributes]
-    [:parm-types ctor-parm-types]  [:parm-annot ctor-p-annots]
-   [:annots ctor-annots]]
+        ctor-p-annots (annot/get-ctor-param-annots ctor)
+        ctor-ex-types (meths/get-ctor-exception-types ctor)
+        ctor-generic-ex-types (meths/get-ctor-gen-exception-types ctor)
+        ]
+  [:ctor ctor-name
+   [:general ctor-general]
+   [:attr ctor-attributes]
+    [:parm-types ctor-parm-types]
+   [:parm-annot ctor-p-annots]
+   [:annots ctor-annots]
+   [:excption-types ctor-ex-types]
+   [:gen-exception-types ctor-generic-ex-types]]
   ))
 
 (defn retrieve-method-info [method]
@@ -56,13 +64,17 @@
         meth-annots (annot/get-method-annots method)
         meth-ret-type (meths/get-method-return-type method)
         meth-generic-ret-type (meths/get-generic-method-return-type method)
+        meth-ex-types (meths/get-meth-exception-types method)
+        meth-generic-ex-types (meths/get-meth-gen-exception-types method)
         ]
     [:method meth-name [:general meth-general] [:attr meth-attributes]
      [:parm-types meth-parm-types]
      [:gen-parm-types meth-generic-parm-types]
      [:parm-annot meth-p-annots] [:annots meth-annots]
      [:return-type meth-ret-type]
-     [:gen-return-type meth-generic-ret-type]]
+     [:gen-return-type meth-generic-ret-type]
+    [:excption-types meth-ex-types]
+    [:gen-exception-types meth-generic-ex-types]]
   ) )
 
 (defn retrieve-field-info [field]

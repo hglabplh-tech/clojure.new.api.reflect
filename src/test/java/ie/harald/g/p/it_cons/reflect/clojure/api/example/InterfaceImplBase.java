@@ -4,7 +4,8 @@ import ie.harald.g.p.it_cons.reflect.clojure.api.example.annot_rec.AppAnnot;
 
 import java.util.Objects;
 
-public class InterfaceImplBase {
+public class InterfaceImplBase extends InterfaceImplBaseAbstr
+                                 implements InterfaceEx {
 
     private InterfaceImplBase() {
 
@@ -12,6 +13,31 @@ public class InterfaceImplBase {
 
     public static InterfaceImplBase instance() {
         return new InterfaceImplBase();
+    }
+
+    @Override
+    public void newDocument(DocumentExample doc) throws DocumentException {
+            Runnable perform = new Runnable() {
+                @Override
+                public void run() {
+
+                }
+            };
+    }
+
+    @Override
+    public void retrieveDocument(DocumentExample doc) throws DocumentException {
+
+    }
+
+    @Override
+    public void updateDocument(DocumentExample doc) throws DocumentException {
+
+    }
+
+    @Override
+    public void deleteDocument(DocumentExample doc) throws DocumentException {
+
     }
 
     public static class TestInner {
