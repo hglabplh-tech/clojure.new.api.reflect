@@ -8,7 +8,7 @@
 
 (deftest simple-class-compile
   (testing "This simple test is to smoke test / check if compile works"
-    (let  [com^p-result (comp/search-compile-class
+    (let  [comp-result (comp/search-compile-class
       "ie.harald.g.p.it_cons.reflect.clojure.api.example.InterfaceImplBaseAbstr"
       "ie.harald.g.p.it_cons.reflect.clojure.api.example")]
       (pprint comp-result)

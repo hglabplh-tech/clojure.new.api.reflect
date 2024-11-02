@@ -1,14 +1,16 @@
 (defproject ie.harald.g.p.it-cons.reflect.clojure.api/cloj-new-reflection-api "0.90-SNAPSHOT"
-  :description "Test Framework extend for Clojure"
+  :description "Clojure Layer for Java reflection with add-ons"
   :url "https://github.com/hglabplh-tech/clojure.new.api.reflect.git"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url  "https://www.eclipse.org/legal/epl-2.0/"}
+  :repositories [["jitpack" "https://jitpack.io"]]
   :dependencies [[org.clojure/clojure "1.12.0"]
                  [org.clojure/clojure-contrib "1.2.0"]
                  [lein-javadoc "0.3.0"]
                                   [org.clojure/core.async "1.6.681"]
                                   [de.active-group/active-clojure "0.42.2"]
                                   [de.active-group/active-data "0.2.1"]
+                                  [com.github.technomancy/leiningen "2.11.2"]
                                   [org.reflections/reflections "0.10.2"]
                  ]
 
