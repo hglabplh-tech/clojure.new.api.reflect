@@ -67,7 +67,7 @@ public class MethsCtorsUtil {
         return getArrayAsLazyVector(method.getGenericParameterTypes());
     }
 
-    public static @Nonnull Type getMethGenericResultType(Method method){
+    public static @Nonnull Type getMethGenericReturnType(Method method){
         return method.getGenericReturnType();
     }
 

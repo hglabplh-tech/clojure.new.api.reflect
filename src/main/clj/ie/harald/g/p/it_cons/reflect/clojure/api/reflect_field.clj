@@ -2,6 +2,13 @@
   (:require [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-types :as rtypes])
   (:import (ie.harald.g.p.it_cons.reflect.clojure.api.utils FieldsUtil)))
 
+(defn get-field-name
+  "Get the field name of a field definition
+  @param : the field we look for"
+  {:added "0.90"
+   :static true}
+  [field]
+  (FieldsUtil/getFieldName field))
 
 (defn get-field-type
   "Get the field type of a field definition

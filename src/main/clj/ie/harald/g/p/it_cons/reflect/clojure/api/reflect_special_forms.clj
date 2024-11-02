@@ -1,8 +1,11 @@
-(ns ie.harald.g.p.it-cons.reflect.clojure.api.reflect-enum-rec
-  (:require [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-types :as types]))
+(ns ie.harald.g.p.it-cons.reflect.clojure.api.reflect-special-forms
+  (:require [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-types :as types])
+  (:import (ie.harald.g.p.it_cons.reflect.clojure.api.utils SpecialFormsUtil)
+           (java.lang.reflect  AnnotatedType)           ))
 
 (declare handle-record
          handle-enum)
+
 
 (defn handle-enum-rec
   "Lookup if class is enum or record and call specific function
@@ -23,7 +26,10 @@
   "Handle / analyze enum type"
   {:added "0.90"
    :static true}
-  [clazz class-defs class-body])
+  [clazz class-defs class-body]
+  (let [enum-spec (SpecialFormsUtil/getEnumSpec clazz)]
+    [class-defs enum-spec class-body]
+    ))
 
 (defn- handle-record
   "Handle / analyze enum type"

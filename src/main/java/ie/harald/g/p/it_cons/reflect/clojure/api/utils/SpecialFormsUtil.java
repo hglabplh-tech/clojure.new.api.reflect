@@ -11,7 +11,7 @@ import java.lang.reflect.Type;
 
 import static ie.harald.g.p.it_cons.reflect.clojure.api.utils.ClojFunctionalUtils.*;
 
-public class EnumRecordUtil {
+public class SpecialFormsUtil {
 
     public static @Nonnull  IPersistentMap
         getEnumSpec(@Nonnull  Enum theEnum) {

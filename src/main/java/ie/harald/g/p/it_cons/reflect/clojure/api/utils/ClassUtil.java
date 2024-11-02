@@ -1,13 +1,12 @@
 package ie.harald.g.p.it_cons.reflect.clojure.api.utils;
 
+import clojure.lang.IPersistentMap;
 import clojure.lang.IPersistentVector;
+import clojure.lang.PersistentArrayMap;
 
 import javax.annotation.Nonnull;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Type;
+import java.lang.reflect.*;
 
 import static ie.harald.g.p.it_cons.reflect.clojure.api.utils.ClojFunctionalUtils.getArrayAsLazyVector;
 
@@ -215,6 +214,35 @@ public class ClassUtil {
         return getArrayAsLazyVector(this.theClass.getDeclaredClasses());
     }
 
+    public static @Nonnull  Boolean isAssignable(Class<?> interfaceToCheck,
+                                                       Object typeInst) {
+        if (interfaceToCheck.isInterface()) {
+            return interfaceToCheck.isAssignableFrom(typeInst.getClass());
+        }
+        return false;
+    }
+
+    public static @Nonnull  IPersistentMap
+    getValuesOfInterface(Class<?> interfaceClass, Object typeInst) {
+        IPersistentMap resultMap = PersistentArrayMap.EMPTY;
+        if (isAssignable(interfaceClass, typeInst)) {
+
+            for (Method meth : interfaceClass.getDeclaredMethods()) {
+                Boolean test = (MethsCtorsUtil
+                        .getMethodModifiers(meth) & Modifier.PUBLIC) > 0;
+                if (test && (meth.getParameterCount() == 0)) {
+                    try {
+                        String methName = meth.getName();
+                        Object result = meth.invoke(typeInst);
+                        resultMap.assocEx(methName, result);
+                    } catch (IllegalAccessException | InvocationTargetException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+        return resultMap;
+    }
     /**
      * returns true if the class given is a annotation otherwise false
      * @param classToCheck the class to be checked

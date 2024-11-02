@@ -1,6 +1,6 @@
 (ns ie.harald.g.p.it-cons.reflect.clojure.api.reflect-types
   (:import (ie.harald.g.p.it_cons.reflect.clojure.api.utils ClassUtil FieldsUtil MethsCtorsUtil)
-           (java.lang.reflect Constructor Method Modifier)))
+           (java.lang.reflect Constructor Method Modifier AnnotatedType)))
 
 
 (defn is-annotation
@@ -10,6 +10,7 @@
    :static true}
   [^Class class-to-check]
   (ClassUtil/isClassAnnotation class-to-check))
+
 
 (defn is-anonymous
   "Is class a anonymous class
@@ -157,6 +158,8 @@
 
 
 
+(defn get-type-readable [type-object]
+  (ClassUtil/getValuesOfInterface (class AnnotatedType) type-object))
 
 (defn- get-modifiers-readable
   "Get a readable format with modifiers integer as
@@ -292,3 +295,4 @@
    :static true}
   [field]
   (attributes-bool-filter (get-field-attributes-readable field)))
+

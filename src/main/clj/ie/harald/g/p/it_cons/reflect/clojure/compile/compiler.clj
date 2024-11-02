@@ -5,7 +5,7 @@
             [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-field :as fields]
             [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-annotation :as annot]
             [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-types :as types]
-            [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-enum-rec :as er-refl])
+            [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-special-forms :as er-refl])
   (:import (java.lang Class)
     (ie.harald.g.p.it_cons.reflect.clojure.api.utils ClassUtil)))
 
@@ -35,34 +35,42 @@
     ))
 
 (defn retrieve-ctor-info [ctor]
-  (let [ctor-general (meths/get-all-ctor-and-type-modifiers ctor)
+  (let [ctor-name (meths/get-ctor-name ctor)
+        ctor-general (meths/get-all-ctor-and-type-modifiers ctor)
         ctor-attributes (types/get-ctor-attributes ctor)
         ctor-parm-types (meths/get-ctor-param-types ctor)
         ctor-annots (annot/get-ctor-annots ctor)
         ctor-p-annots (annot/get-ctor-param-annots ctor)]
-  [:ctor [:general ctor-general] [:attr ctor-attributes]
+  [:ctor ctor-name [:general ctor-general] [:attr ctor-attributes]
     [:parm-types ctor-parm-types]  [:parm-annot ctor-p-annots]
    [:annots ctor-annots]]
   ))
 
 (defn retrieve-method-info [method]
-  (let [meth-general (meths/get-all-meth-and-type-modifiers method)
+  (let [meth-name (meths/get-meth-name method)
+        meth-general (meths/get-all-meth-and-type-modifiers method)
         meth-attributes (types/get-meth-attributes method)
         meth-parm-types (meths/get-meth-param-types method)
+        meth-generic-parm-types (meths/get-generic-meth-param-types method)
         meth-p-annots (annot/get-meth-param-annots method)
         meth-annots (annot/get-method-annots method)
-        meth-ret-type (annot/get-annot-return-type method)]
-    [:method [:general meth-general] [:attr meth-attributes]
+        meth-ret-type (meths/get-method-return-type method)
+        meth-generic-ret-type (meths/get-generic-method-return-type method)
+        ]
+    [:method meth-name [:general meth-general] [:attr meth-attributes]
      [:parm-types meth-parm-types]
+     [:gen-parm-types meth-generic-parm-types]
      [:parm-annot meth-p-annots] [:annots meth-annots]
-     [:return-type meth-ret-type]]
+     [:return-type meth-ret-type]
+     [:gen-return-type meth-generic-ret-type]]
   ) )
 
 (defn retrieve-field-info [field]
-  (let [fld-general (fields/get-all-fields-and-type-modifiers field)
+  (let [fld-name (fields/get-field-name field)
+        fld-general (fields/get-all-fields-and-type-modifiers field)
         fld-gen-type (fields/get-generic-type field)
         fld-annots (fields/get-all-annots field)]
-    [:field [:general fld-general]  [:gen-type fld-gen-type]
+    [:field fld-name [:general fld-general]  [:gen-type fld-gen-type]
      [:annots fld-annots]]
     ))
 
@@ -92,10 +100,10 @@
                                         (rcl/get-all-fields clazz-util)
                                         (rcl/get-all-methods clazz-util)
                                         (rcl/get-all-sub-classes clazz-util))]
-    (if (rec-or-enum? the-class)
-      [:compilation (er-refl/handle-enum-rec the-class class-def class-body)]
+    ;;    (if (rec-or-enum? the-class)
+    ;;[:compilation (er-refl/handle-enum-rec the-class class-def class-body)]
       [:compilation class-def class-body])
-    ) )
+    )
 
 
 (defn compile-class [^String canonical-nane]

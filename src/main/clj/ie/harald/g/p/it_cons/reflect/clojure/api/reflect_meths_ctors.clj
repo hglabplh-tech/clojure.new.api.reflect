@@ -2,6 +2,14 @@
   (:require [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-types :as rtypes])
   (:import (ie.harald.g.p.it_cons.reflect.clojure.api.utils MethsCtorsUtil)))
 
+(defn get-ctor-name
+  "Get the constructors name
+  @param : the ctor we look for"
+  {:added "0.90"
+   :static true}
+  [ctor]
+  (MethsCtorsUtil/getCtorName ctor))
+
 (defn get-ctor-param-count
   "Get the constructors parameter count
   @param : the ctor we look for"
@@ -40,6 +48,14 @@
          )
        ctors))
 
+(defn get-meth-name
+  "Get the methods name
+  @param : the method we look for"
+  {:added "0.90"
+   :static true}
+  [meth]
+  (MethsCtorsUtil/getMethodName meth))
+
 (defn get-meth-param-count
   "Get the methods parameter count
    @param : the method we look for"
@@ -56,6 +72,15 @@
   [meth]
   (MethsCtorsUtil/getMethodParamTypes meth))
 
+
+(defn get-generic-meth-param-types
+  "Get the methods parameter types
+ @param : the method we look for"
+  {:added "0.90"
+   :static true}
+  [meth]
+  (map rtypes/get-type-readable (MethsCtorsUtil/getMethGenericParmTypes meth)))
+
 (defn get-method-return-type
   "Get the methods return type
 @param : the method we look for"
@@ -63,6 +88,14 @@
    :static true}
   [meth]
   (MethsCtorsUtil/getMethodReturnType meth))
+
+(defn get-generic-method-return-type
+  "Get the methods generic return type
+@param : the method we look for"
+  {:added "0.90"
+   :static true}
+  [meth]
+  (rtypes/get-type-readable (MethsCtorsUtil/getMethGenericReturnType meth)))
 
 (defn get-method-modifier
   "Get the methods modifier
