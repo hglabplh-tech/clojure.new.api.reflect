@@ -8,10 +8,8 @@
 
 (deftest reflect.methods.test
   (testing "Here the reflection of fields in a class is tested"
-    (let [spec-clazz-refl (rcl/get-class
-                            "hgp.reflect.clojure.api.app_exam.Application"
-                            "hgp.reflect.clojure.api.app_exam"
-                            "hgp.reflect.clojure.api.example")
+    (let [spec-clazz-refl (rcl/get-class-simple
+                            "ie.harald.g.p.it_cons.reflect.clojure.api.app_exam.Application")
           all-meths (rcl/get-all-methods spec-clazz-refl)]
       (pprint (map mctor/get-all-meth-and-type-modifiers all-meths))
       (pprint (map mctor/get-meth-param-types all-meths))
@@ -20,10 +18,9 @@
 
 (deftest reflect.ctor.test
   (testing "Here the reflection of fields in a class is tested"
-    (let [spec-clazz-refl (rcl/get-class
-                            "hgp.reflect.clojure.api.app_exam.Application"
-                            "hgp.reflect.clojure.api.app_exam"
-                            "hgp.reflect.clojure.api.example")
+    (let [spec-clazz-refl (rcl/get-class-simple
+                            "ie.harald.g.p.it_cons.reflect.clojure.api.app_exam.Application"
+                            )
           all-ctors (rcl/get-all-ctors spec-clazz-refl)]
       (println "Here are the ctor results")
       (pprint (map mctor/get-all-ctor-and-type-modifiers all-ctors))

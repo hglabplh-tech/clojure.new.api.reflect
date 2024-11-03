@@ -2,12 +2,12 @@
   (:require [clojure.test :refer :all]
             [clojure.pprint :refer :all]
             [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-class :as rcl]
-            [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-annotation :as annot]))
+            [ie.harald.g.p.it-cons.reflect.clojure.api.reflect-annotation :as annot])
 
-(def spec-clazz-refl  (rcl/get-class
-                                       "hgp.reflect.clojure.api.app_exam.Application"
-                                       "hgp.reflect.clojure.api.app_exam"
-                                       "hgp.reflect.clojure.api.example"))
+  )
+
+(def spec-clazz-refl  (rcl/get-class-simple
+                        "ie.harald.g.p.it_cons.reflect.clojure.api.app_exam.Application"))
 (deftest annot.class.test
   (testing "class annotation test"
     (let [the-class   (.getTheClass spec-clazz-refl)]

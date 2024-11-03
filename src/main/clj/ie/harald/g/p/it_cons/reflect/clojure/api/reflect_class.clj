@@ -4,7 +4,8 @@
   (:import (java.lang.annotation Annotation)
            (ie.harald.g.p.it_cons.reflect.clojure.api.utils ClassUtil)))
 
-
+(defn get-class-simple [class-name]
+  (ClassUtil. (Class/forName class-name)))
 (defn get-class
   "Get a class out of the package definitions by the canonical name
    @param clazz-name : the canonical name of the class

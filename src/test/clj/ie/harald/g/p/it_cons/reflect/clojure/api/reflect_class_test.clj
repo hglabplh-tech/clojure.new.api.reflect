@@ -6,10 +6,9 @@
 
 (deftest get-class.test
   (testing "getting a class of given packages"
-    (let [spec-clazz-refl (rcl/get-class
-              "hgp.reflect.clojure.api.app_exam.Application"
-              "hgp.reflect.clojure.api.app_exam"
-              "hgp.reflect.clojure.api.example")]
+    (let [spec-clazz-refl (rcl/get-class-simple
+              "ie.harald.g.p.it_cons.reflect.clojure.api.app_exam.Application"
+            )]
       (println (type spec-clazz-refl))
       (println (.getClassName spec-clazz-refl))
       (pprint spec-clazz-refl)
