@@ -28,7 +28,7 @@ jobs:
         path: '.'changed build action
 
     - name: Build action 1
-      run: lein install
+      run:  lein install
 
     - name: Build action 2
       run: lein codox
@@ -37,7 +37,7 @@ jobs:
       run: lein deps
 
     - name: Compile tests
-      run: lein with-profiles java-tests-compile compile
+      run: lein "with-profiles java-tests-compile compile"
 
     - name: Run tests
       run: lein test
