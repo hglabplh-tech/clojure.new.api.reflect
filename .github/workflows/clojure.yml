@@ -28,7 +28,7 @@ jobs:
         path: '.'changed build action
 
     - name: Build action
-      run: lein do clean, install, codox with-profiles :java-tests-compile
+      run: lein do clean, install, codox, with-profiles :java-tests-compile
 
 
     - name: Install dependencies
