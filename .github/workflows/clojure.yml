@@ -25,10 +25,10 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: ${{ github.repository }}
-        path: '.'
+        path: '.'changed build action
 
-    - name: Compile ection
-      run: lein compile
+    - name: Build action
+      run: lein do clean, install, codox with-profiles :java-tests-compile
 
 
     - name: Install dependencies
