@@ -36,7 +36,7 @@ jobs:
       run: lein deps
 
     - name: Compile tests
-      run: lein "with-profiles java-tests-compile compile"
+      run: lein with-profiles java-tests-compile install
 
     - name: Run tests
       run: lein test
