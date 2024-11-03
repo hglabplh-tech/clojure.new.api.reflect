@@ -24,8 +24,7 @@ jobs:
     - name: Check out action
       uses: actions/checkout@v4
       with:
-        repository: ${{ github.repository }}
-        path: '.'changed build action
+        path: '.'
 
     - name: Build action 1
       run:  lein install
