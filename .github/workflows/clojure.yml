@@ -8,17 +8,16 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-        - name: Set up Java
-          uses: actions/setup-java@v3
-          with:
-          java-version: 17
-          distribution: 'Oracle'
-
     steps:
-    - uses: actions/checkout@v4
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: 17
+        distribution: 'Oracle'
+
     - name: Install dependencies
       run: lein deps
+
     - name: Run tests
       run: lein test
