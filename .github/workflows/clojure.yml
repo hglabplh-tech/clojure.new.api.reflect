@@ -27,13 +27,17 @@ jobs:
         repository: ${{ github.repository }}
         path: '.'changed build action
 
-    - name: Build action
-      run: lein do clean, install, codox, with-profiles :java-tests-compile
+    - name: Build action 1
+      run: lein install
 
+    - name: Build action 2
+      run: lein codox
 
     - name: Install dependencies
       run: lein deps
 
+    - name: Compile tests
+      run: lein compile with-profiles :java-tests-compile
     - name: Run tests
       run: lein test
 
