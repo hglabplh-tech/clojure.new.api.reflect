@@ -21,8 +21,21 @@ jobs:
       with:
         cli: 'latest'
 
+    - name: Check out action
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ github.repository }}
+        path: '.'
+
+    - name: Compile ection
+      run: lein compile
+
+
     - name: Install dependencies
       run: lein deps
 
     - name: Run tests
       run: lein test
+
+    - name: Install action
+      run: lein install
