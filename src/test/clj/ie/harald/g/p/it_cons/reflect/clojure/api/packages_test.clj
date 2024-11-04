@@ -8,8 +8,8 @@
 (deftest hgp.package.list.test
   (testing "This test checks if the list-pkgs works correctly"
     (let [result (pkgs/list-packages
-                   "hgp.reflect.clojure.api.example"
-                   "hgp.reflect.clojure.api.app_exam")]
+                   "ie.harald.g.p.it-cons.reflect.clojure.api"
+                   "ie.harald.g.p.it-cons.reflect.clojure")]
       (pprint (map type (first result) ))
       (pprint result)
     )))

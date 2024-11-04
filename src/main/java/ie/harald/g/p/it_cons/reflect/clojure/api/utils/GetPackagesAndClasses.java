@@ -21,7 +21,7 @@ import static ie.harald.g.p.it_cons.reflect.clojure.api.utils.ClojFunctionalUtil
 public class GetPackagesAndClasses {
 
     public static IPersistentVector findAllClassesUsingClassLoader(String packageName) {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         assert classLoader != null;
         String path = packageName.replace('.', '/');
         List<Class> classes = new ArrayList<>();

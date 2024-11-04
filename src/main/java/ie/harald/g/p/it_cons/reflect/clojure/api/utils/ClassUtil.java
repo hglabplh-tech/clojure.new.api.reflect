@@ -15,7 +15,7 @@ import static ie.harald.g.p.it_cons.reflect.clojure.api.utils.ClojFunctionalUtil
  * which is given by the parameter of the constructor it is for getting the
  * class members via reflective calls
  *
- * @author Harald Glab-Plhak
+ * @author Harald Glab-Plhak (Harald G.P. IT-Consulting / Projéct Support)
  */
 public class ClassUtil {
 
