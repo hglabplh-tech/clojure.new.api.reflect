@@ -13,7 +13,11 @@
                                   [com.github.technomancy/leiningen "2.11.2"]
                                   [org.reflections/reflections "0.10.2"]
                  ]
+  :deploy-repositories [["releases" :clojars :sign-releases false]
+                         ["snapshots" :clojars :sign-releases false]]
 
+ :user {:signing {:gpg-key true
+                    :ssh-key "~/.ssh/id_rsa"}}
   :plugins [[lein-codox "0.10.8"]  [lein-javadoc "0.3.0"]]
 
   :javac-options ["-target" "17" "-source" "17" "-Xlint:-options"]
