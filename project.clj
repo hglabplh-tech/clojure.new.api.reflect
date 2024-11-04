@@ -1,4 +1,4 @@
-(defproject ie.harald.g.p.it-cons.reflect.clojure.api/cloj-new-reflection-api "0.90-SNAPSHOT"
+(defproject ie.harald.g.p.it-cons.reflect.clojure.api/cloj-new-reflection-api "0.90"
   :description "Clojure Layer for Java reflection with add-ons"
   :url "https://github.com/hglabplh-tech/clojure.new.api.reflect.git"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
