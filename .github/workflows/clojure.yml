@@ -36,7 +36,7 @@ jobs:
       run: lein deps
 
     - name: Compile tests
-      run: lein with-profiles java-tests-compile install
+      run: lein do with-profiles java-tests-compile uberjar, test, install, codox
 
     - name: Run tests
       run: lein test

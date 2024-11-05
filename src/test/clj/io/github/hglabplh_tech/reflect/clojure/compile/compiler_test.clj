@@ -1,0 +1,52 @@
+(ns io.github.hglabplh-tech.reflect.clojure.compile.compiler-test
+  (:require [clojure.test :refer :all]
+            [clojure.pprint :refer :all]
+            [io.github.hglabplh-tech.reflect.clojure.compile.ast-table-defs :as tdefs]
+            [io.github.hglabplh-tech.reflect.clojure.compile.compiler :as comp]
+            [io.github.hglabplh-tech.reflect.clojure.api.reflect-field :as rfield]
+            [io.github.hglabplh-tech.reflect.clojure.api.reflect-class :as rcl]))
+
+(deftest simple-class-compile
+  (testing "This simple test is to smoke test / check if compile works"
+    (let  [comp-result (comp/compile-class
+      "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr")]
+      (pprint comp-result)
+    )))
+
+(deftest more-cmplx-class-compile
+  (testing "This more complex test is to smoke test / check if compile works"
+    (let  [comp-result (comp/compile-class
+                         "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase"
+                         )]
+      (pprint comp-result)
+      )))
+
+(deftest enum-class-compile
+  (testing "This is a test for enum classes / check if compile works"
+    (let  [comp-result
+           (comp/compile-class
+             "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyEnum"
+             )]
+      (pprint comp-result)
+      )))
+
+(deftest record-class-compile
+  (testing "This is a test for record classes / check if compile works"
+    (let  [comp-result
+           (comp/compile-class
+             "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyTestRecord"
+             )]
+      (pprint comp-result)
+      )))
+
+
+(deftest lambda-class-compile
+  (testing "This is a test for lambda classes / check if compile works"
+    (let  [comp-result
+           (comp/compile-class
+             "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas"
+             )]
+      (pprint comp-result)
+      )))
+
+(run-tests)
