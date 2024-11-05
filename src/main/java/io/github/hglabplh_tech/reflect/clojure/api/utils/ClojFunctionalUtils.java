@@ -58,4 +58,43 @@ public class ClojFunctionalUtils {
         }
         return resultMap;
     }
+
+    public static @Nonnull Keyword retrieveKeywordForJavaID(String id,
+                                                            ObjType objectType) {
+        char[] idCharArray = id.toCharArray();
+        StringBuilder resultBuffer = new StringBuilder(objectType.prefix());
+        for (char character : idCharArray) {
+            if (Character.isUpperCase(character)) {
+                char charLower = Character.toLowerCase(character);
+                resultBuffer.append('-').append(charLower);
+            } else {
+                resultBuffer.append(character);
+            }
+        }
+
+        return Keyword.intern(resultBuffer
+                .append("-val").toString());
+    }
+
+    public static enum ObjType {
+        CLASS("cls-"),
+        INTERFACE("ifc-"),
+        CTOR("ctor-"),
+        FIELD("fld-"),
+        METHOD("meth-"),
+        ANNOTATION("annot-"),
+        RECORD("rec-"),
+        NONE(""),;
+
+
+        private final String prefix;
+
+        ObjType(String prefix) {
+            this.prefix = prefix;
+        }
+
+        public String prefix() {
+            return prefix;
+        }
+    }
 }
