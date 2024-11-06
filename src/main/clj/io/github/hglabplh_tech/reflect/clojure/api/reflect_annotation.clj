@@ -15,7 +15,8 @@
   {:added "0.9.0"
    :static true}
   [^Constructor ctor]
-  (AnnotationsUtil/getCtorAnnots ctor))
+  (let [annotations (AnnotationsUtil/getCtorAnnots ctor)]
+   annotations))
 
 
 (defn get-ctor-param-annots

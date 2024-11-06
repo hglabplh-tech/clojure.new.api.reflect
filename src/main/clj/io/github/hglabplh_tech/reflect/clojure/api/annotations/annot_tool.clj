@@ -13,3 +13,14 @@
    )
   )
 
+(defn get-annotation-data-vals
+  "gets the values defined by an annotation "
+  {
+   :added "1.1.0"
+   :static true
+   }
+  [annot]
+  (let [annot-data  (AnnotationTool/retrieveAnnotationValues annot)]
+    annot-data
+    ))
+

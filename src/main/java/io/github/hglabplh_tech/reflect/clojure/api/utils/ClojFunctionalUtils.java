@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public class ClojFunctionalUtils {
 
     public static IPersistentVector getArrayAsLazyVector(Object [] arrayContent) {
-        IPersistentVector newVector = LazilyPersistentVector.createOwning(arrayContent);
+        IPersistentVector newVector = LazilyPersistentVector.create(arrayContent);
         return newVector;
     }
 

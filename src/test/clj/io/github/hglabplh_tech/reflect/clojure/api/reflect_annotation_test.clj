@@ -6,7 +6,7 @@
 
   )
 
-(def spec-clazz-refl  (rcl/get-class-simple
+(def spec-clazz-refl  (rcl/get-class-util
                         "io.github.hglabplh_tech.reflect.clojure.api.app_exam.Application"))
 (deftest annot.class.test
   (testing "class annotation test"

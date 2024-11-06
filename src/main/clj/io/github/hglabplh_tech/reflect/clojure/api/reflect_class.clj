@@ -4,8 +4,18 @@
   (:import (java.lang.annotation Annotation)
            (io.github.hglabplh_tech.reflect.clojure.api.utils ClassUtil)))
 
-(defn get-class-simple [class-name]
+(defn get-class-util
+  "get the class util by the canonical class-name with Class/forName"
+  {:added "1.1.0"}
+  [class-name]
   (ClassUtil. (Class/forName class-name)))
+
+(defn get-class-util-by-class
+  "get the class util by a given class"
+  {:added "1.1.0"}
+  [^Class the-class]
+  (ClassUtil. the-class))
+
 (defn get-class
   "Get a class out of the package definitions by the canonical name
    @param clazz-name : the canonical name of the class

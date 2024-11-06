@@ -6,7 +6,7 @@
 
 (deftest get-class.test
   (testing "getting a class of given packages"
-    (let [spec-clazz-refl (rcl/get-class-simple
+    (let [spec-clazz-refl (rcl/get-class-util
               "io.github.hglabplh_tech.reflect.clojure.api.app_exam.Application"
             )]
       (println (type spec-clazz-refl))

@@ -8,7 +8,7 @@
 
 (deftest reflect.methods.test
   (testing "Here the reflection of fields in a class is tested"
-    (let [spec-clazz-refl (rcl/get-class-simple
+    (let [spec-clazz-refl (rcl/get-class-util
                             "io.github.hglabplh_tech.reflect.clojure.api.app_exam.Application")
           all-meths (rcl/get-all-methods spec-clazz-refl)]
       (pprint (map mctor/get-all-meth-and-type-modifiers all-meths))
@@ -18,7 +18,7 @@
 
 (deftest reflect.ctor.test
   (testing "Here the reflection of fields in a class is tested"
-    (let [spec-clazz-refl (rcl/get-class-simple
+    (let [spec-clazz-refl (rcl/get-class-util
                             "io.github.hglabplh_tech.reflect.clojure.api.app_exam.Application"
                             )
           all-ctors (rcl/get-all-ctors spec-clazz-refl)]

@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
 
 import static io.github.hglabplh_tech.reflect.clojure.api.utils.ClojFunctionalUtils.ObjType;
 import static io.github.hglabplh_tech.reflect.clojure.api.utils.ClojFunctionalUtils.retrieveKeywordForJavaID;
+import static io.github.hglabplh_tech.reflect.clojure.api.utils.DataTypeTransformer.*;
+import static io.github.hglabplh_tech.reflect.clojure.api.utils.DataTypeTransformer.transformTypeValuesFromMethods;
 
 /**
  * This class is a utility class for analyzing the content and the attributes of
@@ -83,20 +85,15 @@ public class AnnotationTool<T extends Annotation> {
     public static @Nonnull IPersistentMap retrieveAnnotationValues(Annotation annot) {
         IPersistentMap theMap = PersistentArrayMap.create(PersistentArrayMap.EMPTY);
         Class<? extends Annotation> type = annot.annotationType();
-        Field[] fields = type.getFields();
-        Set<String> fldNames =
-                Arrays.stream(fields).map(Field::getName)
-                        .collect(Collectors.toSet());
-
-        Method[] methods = type.getMethods();
-        Set<String> methNames =
-                Arrays.stream(methods)
-                        .filter(e -> e.getParameterCount() == 0)
-                        .map(Method::getName)
-                        .collect(Collectors.toSet());
-        IPersistentMap fldMap = DataTypeTransformer.transformTypeValuesFromFields(fields, annot);
-        theMap.assocEx(retrieveKeywordForJavaID("fields-values", ObjType.NONE),
+        Field[] fields = type.getDeclaredFields();
+        Method[] methods = type.getDeclaredMethods();
+        Class<?> [] theClasses = type.getNestMembers();
+        IPersistentMap fldMap = transformTypeValuesFromFields(fields, annot);
+        theMap = theMap.assoc(retrieveKeywordForJavaID("fields-values", ObjType.NONE),
         fldMap);
+        IPersistentMap methMap =transformTypeValuesFromMethods(methods, annot);
+        theMap = theMap.assoc(retrieveKeywordForJavaID("methods-values", ObjType.NONE),
+                methMap);
         return theMap;
     }
 
