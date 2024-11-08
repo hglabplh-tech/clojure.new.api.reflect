@@ -92,7 +92,8 @@ public class SpecialFormsUtil {
     /**
      * This method analyzes a 'lambda' and returns the attributes and the specification
      * !!!EXPERIMENTAL UP TO NOW!!!
-     * @param theObject the object (it is checked to be a 'lambda')
+     * @param theFunction the object (it is checked to be a 'lambda')
+     * @param name the names
      * @return the lambda expression specification
      */
     public @Nonnull IPersistentVector
@@ -136,9 +137,6 @@ public class SpecialFormsUtil {
         return PersistentVector.EMPTY;
     }
 
-    /*
-    Private methods
-     */
 
 
 }

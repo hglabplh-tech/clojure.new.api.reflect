@@ -133,7 +133,7 @@ public class DataTypeTransformer {
      * keyword is created the value is then added to a map with the keyword as key
      * Only the methods with an empty parameterlist are called for we assume them
      * to be 'getter' methods
-     * @param fields the field definitions
+     * @param methods the field definitions
      * @param instance the field instance
      * @return the parsistant map wirh name value
      */

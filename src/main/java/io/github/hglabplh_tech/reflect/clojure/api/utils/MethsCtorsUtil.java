@@ -233,7 +233,7 @@ public class MethsCtorsUtil {
 
     /**
      * Get info if a method has a annotation with type x  true if yes / false otherwise
-     * @param ctor the constructor definition
+     * @param meth the constructor definition
      * @param annotation the annotations class
      * @return true = yes / false = no
      */
@@ -276,7 +276,7 @@ public class MethsCtorsUtil {
 
     /**
      * Get the annotations of a constructor
-     * @param meth the constructor definition
+     * @param ctor the constructor definition
      * @return the constructors annotations
      */
     public static @Nonnull IPersistentVector
