@@ -6,7 +6,10 @@
             [io.github.hglabplh-tech.reflect.clojure.api.annotations.annot-tool :as tool])
   (:import (java.lang Deprecated)))
 
-
+(def smoke-result {:annotation-type-val "java.lang.Deprecated",
+                   :fields-values-val {},
+                   :methods-values-val
+                   {:meth-since-val "v1.78", :meth-for-removal-val true}})
 
 (deftest smoke.test.get-vals
   (testing "the retrieve functionality for annotation values"
@@ -14,12 +17,10 @@
                   "io.github.hglabplh_tech.reflect.clojure.api.app_exam.Application")
           ctors (cls/get-public-ctors cls-util)
           annotations (refla/get-ctor-annots (first ctors))
-          annot (get annotations 0)]
-      ;; FIXME !!!!!!!!!!
-      (println annotations)
-      (println annot)
-      (println "Class type :" (.getClass annot))
-    (pp/pprint (tool/get-annotation-data-vals annot))
+          annot (get annotations 0)
+          annot-as-cloj  (tool/get-annotation-data-vals annot)]
+    (pp/pprint annot-as-cloj)
+    (is (= annot-as-cloj smoke-result))
     )
     ))
 

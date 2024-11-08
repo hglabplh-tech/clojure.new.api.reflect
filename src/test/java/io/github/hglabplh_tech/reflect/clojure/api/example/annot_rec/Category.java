@@ -1,6 +1,6 @@
 package io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec;
 
-public enum MyEnum {
+public enum Category {
     TOOLS("tools", "develop"),
     APIS("apis", "design"),
     TESTS("tests", "support"),
@@ -11,7 +11,7 @@ public enum MyEnum {
 
     private final String department;
 
-    MyEnum(String name, String department) {
+    Category(String name, String department) {
         this.name = name;
         this.department = department;
     }
@@ -25,13 +25,13 @@ public enum MyEnum {
         return department;
     }
 
-    public static MyEnum findByName(String theName) {
-        for (MyEnum actVal : MyEnum.values()){
+    public static Category findByName(String theName) {
+        for (Category actVal : Category.values()){
             if (actVal.getName().equals(theName)) {
                 return actVal;
             }
         }
-        return MyEnum.NONE;
+        return Category.NONE;
     }
 
 }

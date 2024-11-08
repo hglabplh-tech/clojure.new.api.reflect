@@ -27,12 +27,16 @@ public class MethsCtorsUtil {
         return ctor.getParameterCount();
     }
 
-    public static @Nonnull IPersistentVector getCtorParamTypes(Constructor ctor) {
+    public static @Nonnull IPersistentVector getCtorParamTypes(Constructor<?> ctor) {
         return getArrayAsLazyVector(ctor.getParameterTypes());
     }
 
-    public static @Nonnull Integer getCtorModifiers(Constructor ctor) {
+    public static @Nonnull Integer getCtorModifiers(Constructor<?> ctor) {
         return ctor.getModifiers();
+    }
+
+    public static @Nonnull Class<?> getCtorDeclaringClass(Constructor<?> ctor){
+        return ctor.getDeclaringClass();
     }
 
     public static @Nonnull  Integer getMethodParamCount (
@@ -69,6 +73,10 @@ public class MethsCtorsUtil {
 
     public static @Nonnull Type getMethGenericReturnType(Method method){
         return method.getGenericReturnType();
+    }
+
+    public static @Nonnull Class<?> getMethDeclaringClass(Method method){
+        return method.getDeclaringClass();
     }
 
     public static  Boolean isBridgeMethod(Method method){

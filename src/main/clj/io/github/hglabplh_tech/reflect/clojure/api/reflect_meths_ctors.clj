@@ -64,6 +64,15 @@
          )
        ctors))
 
+(defn get-ctor-declaring-class
+  "Get the declaring class of the constructor
+  @param : the constructor we look for"
+  {:added "1.1.0"
+   :static true}
+  [ctor]
+  (MethsCtorsUtil/getCtorDeclaringClass ctor))
+
+
 (defn get-meth-name
   "Get the methods name
   @param : the method we look for"
@@ -71,6 +80,14 @@
    :static true}
   [meth]
   (MethsCtorsUtil/getMethodName meth))
+
+(defn get-meth-declaring-class
+"Get the declaring class of method
+@param : the method we look for"
+{:added "1.1.0"
+ :static true}
+[meth]
+(MethsCtorsUtil/getMethDeclaringClass meth))
 
 (defn get-meth-param-count
   "Get the methods parameter count

@@ -43,6 +43,7 @@
         ctor-p-annots (annot/get-ctor-param-annots ctor)
         ctor-ex-types (meths/get-ctor-exception-types ctor)
         ctor-generic-ex-types (meths/get-ctor-gen-exception-types ctor)
+        ctor-declaring-class (meths/get-ctor-declaring-class ctor)
         ]
   [:ctor ctor-name
    [:general ctor-general]
@@ -51,7 +52,8 @@
    [:parm-annot ctor-p-annots]
    [:annots ctor-annots]
    [:excption-types ctor-ex-types]
-   [:gen-exception-types ctor-generic-ex-types]]
+   [:gen-exception-types ctor-generic-ex-types]
+   [:declaring-class ctor-declaring-class]]
   ))
 
 (defn retrieve-method-info [method]
@@ -66,6 +68,7 @@
         meth-generic-ret-type (meths/get-generic-method-return-type method)
         meth-ex-types (meths/get-meth-exception-types method)
         meth-generic-ex-types (meths/get-meth-gen-exception-types method)
+        meth-declaring-class (meths/get-meth-declaring-class method)
         ]
     [:method meth-name [:general meth-general] [:attr meth-attributes]
      [:parm-types meth-parm-types]
@@ -74,7 +77,8 @@
      [:return-type meth-ret-type]
      [:gen-return-type meth-generic-ret-type]
     [:excption-types meth-ex-types]
-    [:gen-exception-types meth-generic-ex-types]]
+    [:gen-exception-types meth-generic-ex-types]
+     [:declaring-class meth-declaring-class]]
   ) )
 
 (defn retrieve-field-info [field]
@@ -86,19 +90,25 @@
      [:annots fld-annots]]
     ))
 
-(defn define-direct-class-parameters [clazz-util]
+(defn retrieve-direct-class-parameters [clazz-util]
   (let [class-name (rcl/get-class-name clazz-util)
         attributes (rcl/get-class-attributes (rcl/get-the-class clazz-util))
 
         interfaces (rcl/get-interfaces clazz-util)
         super-class (rcl/get-super-class clazz-util)
         gen-interfaces (rcl/get-generic-interfaces clazz-util)
-        gen-super-class (rcl/get-generic-super-class clazz-util)]
+        gen-super-class (rcl/get-generic-super-class clazz-util)
+        enclosing-class (rcl/get-enclosing-class clazz-util)
+        enclosing-ctor (rcl/get-enclosing-constructor clazz-util)
+        enclosing-meth (rcl/get-enclosing-method clazz-util)]
     [:class class-name [:attributes attributes]
      [:super super-class]
      [:interface interfaces]
      [:gen-interface gen-interfaces]
-     [:gen-super gen-super-class]]
+     [:gen-super gen-super-class]
+     [:enclosing-class enclosing-class]
+     [:enclosing-constructor enclosing-ctor]
+     [:enclosing-method enclosing-meth]]
 
     ))
 
@@ -106,7 +116,7 @@
   (or (types/is-enum clazz) (types/is-record clazz)))
 
 (defn really-compile [^ClassUtil clazz-util]
-  (let [class-def (define-direct-class-parameters clazz-util)
+  (let [class-def (retrieve-direct-class-parameters clazz-util)
         the-class (rcl/get-the-class clazz-util)
         class-body (retrieve-class-body (rcl/get-all-ctors clazz-util)
                                         (rcl/get-all-fields clazz-util)

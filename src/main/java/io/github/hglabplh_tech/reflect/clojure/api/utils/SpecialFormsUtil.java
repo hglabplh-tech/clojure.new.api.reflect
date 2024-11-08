@@ -10,6 +10,7 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 
 import static io.github.hglabplh_tech.reflect.clojure.api.utils.ClojFunctionalUtils.*;
+import static io.github.hglabplh_tech.reflect.clojure.api.utils.DataTypeTransformer.transformTypeValuesFromMethods;
 
 public class SpecialFormsUtil {
 
@@ -20,7 +21,16 @@ public class SpecialFormsUtil {
         for (Enum enumC :  enumConsts) {
             String name = enumC.name();
             Integer ordinal = enumC.ordinal();
-            makeKeyWordFromEnumAndAdd(enumMap, name, ordinal);
+            IPersistentMap baseValues = PersistentArrayMap.EMPTY
+                    .assoc(retrieveKeywordForJavaID("name", ObjType.NONE), name)
+                    .assoc(retrieveKeywordForJavaID("ordinal", ObjType.NONE), ordinal);
+            IPersistentMap methValues = transformTypeValuesFromMethods(enumC.getClass().getMethods(),
+                                                    enumC);
+            enumMap = enumMap.assoc(retrieveKeywordForJavaID("enum-base", ObjType.NONE),
+                    baseValues);
+            enumMap = enumMap.assoc(retrieveKeywordForJavaID("e-user-vals", ObjType.NONE),
+                    methValues);
+
         }
         return enumMap;
 

@@ -1,6 +1,6 @@
 package io.github.hglabplh_tech.reflect.clojure.api.example;
 
-import io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.AppAnnot;
+import io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.TransportSpec;
 
 import java.util.Objects;
 
@@ -42,10 +42,10 @@ public class InterfaceImplBase extends InterfaceImplBaseAbstr
 
     public static class TestInner {
 
-        @AppAnnot
+        @TransportSpec
         private final String firstName;
 
-        @AppAnnot
+        @TransportSpec
         private final String lastName;
 
         public TestInner(String firtName, String lastName) {

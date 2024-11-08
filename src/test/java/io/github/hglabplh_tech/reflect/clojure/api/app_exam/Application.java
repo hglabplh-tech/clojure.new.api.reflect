@@ -13,7 +13,7 @@ public class Application {
 
     private final @Nonnull  URL url;
 
-    @Deprecated(since = "1.78", forRemoval = true)
+    @Deprecated(since = "v1.78", forRemoval = true)
     public Application(@Nonnull  String host, @Nonnull Integer port, @Nonnull  URL url) {
         this.host = host;
         this.port = port;

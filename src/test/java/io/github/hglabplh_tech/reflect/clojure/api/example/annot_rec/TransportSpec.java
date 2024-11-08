@@ -7,7 +7,15 @@ import java.lang.annotation.Target;
 
 @Target(value = {ElementType.FIELD, ElementType.METHOD})
 @Retention(value = RetentionPolicy.RUNTIME)
-public @interface AppAnnot {
-    String module = "None";
-    String message = "Unknown";
+public @interface TransportSpec {
+    Class<?> sourceType() default String.class;
+    Class<?> targetType() default String.class;
+    TransportType transportType() default TransportType.HTTP;
+
+    enum TransportType {
+        HTTP,
+        HTTPS,
+        PIPE,;
+
+    }
 }

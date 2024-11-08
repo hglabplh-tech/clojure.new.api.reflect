@@ -87,6 +87,10 @@ public class DataTypeTransformer {
 
             } else {
                 try {
+                    Object value = field.get(instance);
+                    if(value.getClass().isEnum()) {
+                        value = SpecialFormsUtil.getEnumSpec((Enum)value);
+                    }
                     nameValueMap.assoc(retrieveKeywordForJavaID(field.getName(),
                                     ObjType.FIELD),
                             field.get(instance));
@@ -113,7 +117,13 @@ public class DataTypeTransformer {
                 if (result == null) {
                     throw new IllegalStateException("value not there");
                 }
-                nameValueMap = nameValueMap.assoc(retrieveKeywordForJavaID(method.getName(), ObjType.METHOD), result);
+
+                if(result.getClass().isEnum()) {
+                    result = SpecialFormsUtil.getEnumSpec((Enum)result);
+                }
+                nameValueMap = nameValueMap.assoc(
+                        retrieveKeywordForJavaID(method.getName(), ObjType.METHOD),
+                        result);
 
             }
 

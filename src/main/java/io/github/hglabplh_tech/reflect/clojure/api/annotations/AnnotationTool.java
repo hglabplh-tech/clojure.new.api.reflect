@@ -85,9 +85,10 @@ public class AnnotationTool<T extends Annotation> {
     public static @Nonnull IPersistentMap retrieveAnnotationValues(Annotation annot) {
         IPersistentMap theMap = PersistentArrayMap.create(PersistentArrayMap.EMPTY);
         Class<? extends Annotation> type = annot.annotationType();
+        theMap = theMap.assoc(retrieveKeywordForJavaID("annotation-type", ObjType.NONE),
+                type.getCanonicalName());
         Field[] fields = type.getDeclaredFields();
         Method[] methods = type.getDeclaredMethods();
-        Class<?> [] theClasses = type.getNestMembers();
         IPersistentMap fldMap = transformTypeValuesFromFields(fields, annot);
         theMap = theMap.assoc(retrieveKeywordForJavaID("fields-values", ObjType.NONE),
         fldMap);
