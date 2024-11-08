@@ -9,41 +9,45 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * This class is a utility class for conversion t clojure types
+ * This s a utility class for conversion from Java Types to  clojure vectors
+ * or maps representing the content
  *
  * @author Harald Glab-Plhak (Harald G.P. IT-Consulting / Projéct Support)
  */
 public class ClojFunctionalUtils {
 
+    /**
+     * Private constructor class has only statics
+     */
+    private ClojFunctionalUtils () {
+
+    }
+
+    /**
+     *
+     * @param arrayContent the array to transform
+     * @return the persistence vector with the array-content
+     */
     public static IPersistentVector getArrayAsLazyVector(Object [] arrayContent) {
         IPersistentVector newVector = LazilyPersistentVector.create(arrayContent);
         return newVector;
     }
 
-
-
-    public static IPersistentVector getListAsLazyVector(List listContent) {
+    /**
+     * transform a java.util.List to a Clojure vector
+     * @param listContent the list to be transformed
+     * @return thevector with the list content
+     */
+    public static IPersistentVector getListAsLazyVector(List<?> listContent) {
         IPersistentVector newVector = LazilyPersistentVector.create(listContent.toArray());
         return newVector;
     }
 
-
     /**
-     *
-     * @param enumMap
-     * @param name
-     * @param ordinal
-     * @return
+     * transform a generic param to a key value
+     * @param paramVect the vector of parameters
+     * @return the key value map (name, type-name)
      */
-    public static @Nonnull IPersistentMap
-    makeKeyWordFromEnumAndAdd(@Nonnull  IPersistentMap enumMap,
-                                             @Nonnull  String name, Integer ordinal) {
-
-        Keyword word = Keyword.intern(name);
-        enumMap.assocEx(word, ordinal);
-        return enumMap;
-    }
-
     public static  @Nonnull  IPersistentMap
         retrieveGenericParamTypesAsMeta(IPersistentVector paramVect) {
         IPersistentMap resultMap = PersistentArrayMap.EMPTY;
@@ -53,12 +57,21 @@ public class ClojFunctionalUtils {
             TypeVariable<?> typeVar = (TypeVariable<?>)paramVect.nth(index);
             String varName = typeVar.getName();
             String typeName = typeVar.getTypeName();
-            resultMap.assocEx(index, Tuple.create(varName, typeName));
+            resultMap = resultMap.assocEx(index, Tuple.create(varName, typeName));
 
         }
         return resultMap;
     }
 
+    /**
+     * Make a Clojure keyword out of a Java Name String
+     * the name string is converted to Clojure name convention e.g. K gets k-
+     * (No CamelCase)
+     * @param id the id(Java Name) to be converted
+     * @param objectType the type of the object to generate a prefix if wanted
+     *                   (meth-(Method) fld-(Field) cls-(Class) ...
+     * @return the K
+     */
     public static @Nonnull Keyword retrieveKeywordForJavaID(String id,
                                                             ObjType objectType) {
         char[] idCharArray = id.toCharArray();
@@ -76,6 +89,10 @@ public class ClojFunctionalUtils {
                 .append("-val").toString());
     }
 
+    /**
+     * The enum class for the different types when translating class names to
+     * Clojure keyword convention
+     * @author Harald Glab-Plhak*/
     public static enum ObjType {
         CLASS("cls-"),
         INTERFACE("ifc-"),

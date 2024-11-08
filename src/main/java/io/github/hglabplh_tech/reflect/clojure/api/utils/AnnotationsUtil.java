@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
 
 import static io.github.hglabplh_tech.reflect.clojure.api.utils.ClojFunctionalUtils.getArrayAsLazyVector;
 /**
- * This class is a utility class for getting the Annotations belonging to a
+ * This is a utility class for getting the Annotations belonging to a
  * class method field
  *
  * @author Harald Glab-Plhak (Harald G.P. IT-Consulting / Projéct Support)

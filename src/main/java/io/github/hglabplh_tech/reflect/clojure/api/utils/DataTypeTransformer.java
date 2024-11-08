@@ -11,8 +11,31 @@ import java.lang.reflect.Method;
 import static io.github.hglabplh_tech.reflect.clojure.api.utils.ClojFunctionalUtils.ObjType;
 import static io.github.hglabplh_tech.reflect.clojure.api.utils.ClojFunctionalUtils.retrieveKeywordForJavaID;
 
+/**
+ * This s a utility class for transforming data from Java to a well readable
+ * processable form of clojure data
+ *
+ * @author Harald Glab-Plhak (Harald G.P. IT-Consulting / Projéct Support)
+ */
 public class DataTypeTransformer {
 
+    /**
+     * Private for all methods are static
+     */
+    private DataTypeTransformer () {
+
+    }
+
+    /**
+     * This method gets a array of field definitions and
+     * the instance of the corresponding object
+     * the field definitions are used to retrieve the values from the fields
+     * the field name (Camel Case ) is converted to Clojure conventions and a
+     * keyword is created the value is then added to a map with the keyword as key
+     * @param fields the field definitions
+     * @param instance the field instance
+     * @return the parsistant map wirh name value
+     */
     public static @Nonnull IPersistentMap
     transformTypeValuesFromFields(@Nonnull Field[] fields, Object instance) {
         IPersistentMap nameValueMap = PersistentArrayMap.create
@@ -102,6 +125,18 @@ public class DataTypeTransformer {
         return nameValueMap;
     }
 
+    /**
+     * This method gets a array of method definitions and
+     * the instance of the corresponding object
+     * the method definitions are used to get the return values from
+     * calling the method name (Camel Case ) is converted to Clojure conventions and a
+     * keyword is created the value is then added to a map with the keyword as key
+     * Only the methods with an empty parameterlist are called for we assume them
+     * to be 'getter' methods
+     * @param fields the field definitions
+     * @param instance the field instance
+     * @return the parsistant map wirh name value
+     */
     public static @Nonnull IPersistentMap
     transformTypeValuesFromMethods(@Nonnull Method[] methods, Object instance) {
         IPersistentMap nameValueMap = PersistentArrayMap.create
@@ -131,4 +166,3 @@ public class DataTypeTransformer {
         return nameValueMap;
     }
 }
-

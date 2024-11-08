@@ -28,6 +28,7 @@
         class-infos (map (fn [clazz]
                            (really-compile (ClassUtil. clazz)))
                          inner-classes)]
+
     [:body [:ctor-infos ctor-infos]
      [:field-infos field-infos]
      [:method-infos method-infos]
@@ -85,7 +86,8 @@
   (let [fld-name (fields/get-field-name field)
         fld-general (fields/get-all-fields-and-type-modifiers field)
         fld-gen-type (fields/get-generic-type field)
-        fld-annots (fields/get-all-annots field)]
+        fld-annots (fields/get-all-annots field)
+        ]
     [:field fld-name [:general fld-general]  [:gen-type fld-gen-type]
      [:annots fld-annots]]
     ))
@@ -93,14 +95,14 @@
 (defn retrieve-direct-class-parameters [clazz-util]
   (let [class-name (rcl/get-class-name clazz-util)
         attributes (rcl/get-class-attributes (rcl/get-the-class clazz-util))
-
         interfaces (rcl/get-interfaces clazz-util)
         super-class (rcl/get-super-class clazz-util)
         gen-interfaces (rcl/get-generic-interfaces clazz-util)
         gen-super-class (rcl/get-generic-super-class clazz-util)
         enclosing-class (rcl/get-enclosing-class clazz-util)
         enclosing-ctor (rcl/get-enclosing-constructor clazz-util)
-        enclosing-meth (rcl/get-enclosing-method clazz-util)]
+        enclosing-meth (rcl/get-enclosing-method clazz-util)
+        enum-specs (er-refl/handle-enum (rcl/get-the-class clazz-util) )]
     [:class class-name [:attributes attributes]
      [:super super-class]
      [:interface interfaces]
@@ -108,8 +110,8 @@
      [:gen-super gen-super-class]
      [:enclosing-class enclosing-class]
      [:enclosing-constructor enclosing-ctor]
-     [:enclosing-method enclosing-meth]]
-
+     [:enclosing-method enclosing-meth]
+     [:enum-specs enum-specs]]
     ))
 
 (defn rec-or-enum? [clazz]

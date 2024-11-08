@@ -4,18 +4,42 @@ import clojure.lang.*;
 
 import javax.annotation.Nonnull;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.Type;
+import java.lang.reflect.*;
 
 import static io.github.hglabplh_tech.reflect.clojure.api.utils.ClojFunctionalUtils.*;
 import static io.github.hglabplh_tech.reflect.clojure.api.utils.DataTypeTransformer.transformTypeValuesFromMethods;
-
+/**
+ * This s a utility class for the types enum, records and 'lambda'
+ *
+ *
+ * @author Harald Glab-Plhak (Harald G.P. IT-Consulting / Projéct Support)
+ */
 public class SpecialFormsUtil {
 
+    /**
+     * private contructor for all methods are static
+     */
+    private SpecialFormsUtil () {
+
+    }
+
+    /**
+     * This method analyzes the structure and attributes and constants of a enum and
+     * returns it as a map
+     * @param theObject the object (it is checked to be an enum)
+     * @return the enum specification
+     */
     public static @Nonnull  IPersistentMap
-        getEnumSpec(@Nonnull  Enum theEnum) {
+        getEnumSpec(@Nonnull  Object theObject) {
+        Enum theEnum = null;
+        if (theObject.getClass().isEnum()) {
+            theEnum = (Enum) theObject;
+        } else {
+            return PersistentArrayMap.create(PersistentArrayMap.EMPTY)
+                    .assocEx(
+                            retrieveKeywordForJavaID("e-info-empty", ObjType.CLASS),
+                            "empty");
+        }
         Enum[]  enumConsts = theEnum.getClass().getEnumConstants();
         IPersistentMap enumMap = PersistentArrayMap.EMPTY;
         for (Enum enumC :  enumConsts) {
@@ -36,13 +60,43 @@ public class SpecialFormsUtil {
 
     }
 
-    public static @Nonnull  Integer
-        getRecordSpec(@Nonnull Record theEnum) {
-        return 0;
+    /**
+     * This method analyzes the structure and attributes and constants of a record and
+     * returns it as a map
+     * @param theObject the object (it is checked to be a record)
+     * @return the record specification
+     */
+    public static @Nonnull  IPersistentMap
+        getRecordSpec(@Nonnull Object theObject) {
+        IPersistentMap recordMap = PersistentArrayMap.create(PersistentArrayMap.EMPTY);
+        Class<? extends  Record> theRecordClass = null;
+        if (theObject.getClass().isRecord()) {
+            theRecordClass = (Class<? extends Record>)theObject.getClass();
+        } else {
+            return PersistentArrayMap.create(PersistentArrayMap.EMPTY);
+        }
+        Field[] fields = theRecordClass.getDeclaredFields();
+        DataTypeTransformer.transformTypeValuesFromFields(fields, theObject);
+        Method[] methods = theRecordClass.getDeclaredMethods();
+        IPersistentMap fieldValues = DataTypeTransformer
+                .transformTypeValuesFromFields(fields, theObject);
+        IPersistentMap methValues = DataTypeTransformer
+                .transformTypeValuesFromMethods(methods, theObject);
+        recordMap = recordMap.assoc(retrieveKeywordForJavaID("field-rec-vals", ObjType.NONE),
+                fieldValues);
+        recordMap = recordMap.assoc(retrieveKeywordForJavaID("meth-rec-vals", ObjType.NONE),
+                methValues);
+        return recordMap;
     }
 
+    /**
+     * This method analyzes a 'lambda' and returns the attributes and the specification
+     * !!!EXPERIMENTAL UP TO NOW!!!
+     * @param theObject the object (it is checked to be a 'lambda')
+     * @return the lambda expression specification
+     */
     public @Nonnull IPersistentVector
-        analyzeGeneralLambdaExpr (@Nonnull Class<?> theFunction, String... name) {
+        analyzeGeneralLambdaExpr (@Nonnull Class<? > theFunction, String... name) {
         Constructor<?>[] ctors = theFunction.getDeclaredConstructors();
         Method[] methods = theFunction.getDeclaredMethods();
         Method foundMethod = null;
