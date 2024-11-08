@@ -27,7 +27,7 @@ public class SpecialFormsUtil {
     /**
      * This method analyzes the structure and attributes and constants of a enum and
      * returns it as a map
-     * @param theObject the object (it is checked to be an enum)
+     * @param theClass the class (it is checked to be an enum class)
      * @return the enum specification
      */
     public static @Nonnull  IPersistentMap
