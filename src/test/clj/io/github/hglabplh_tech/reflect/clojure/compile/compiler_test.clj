@@ -25,7 +25,7 @@
   (testing "This is a test for enum classes / check if compile works"
     (let  [comp-result
            (comp/compile-class
-             "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyEnum"
+             "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.TransportSpec"
              )]
       (pprint comp-result)
       )))
