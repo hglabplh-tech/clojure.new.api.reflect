@@ -112,7 +112,7 @@ public class DataTypeTransformer {
                 try {
                     Object value = field.get(instance);
                     if(value.getClass().isEnum()) {
-                        value = SpecialFormsUtil.getEnumSpec((Enum)value);
+                        value = SpecialFormsUtil.getEnumSpec(value.getClass());
                     }
                     nameValueMap.assoc(retrieveKeywordForJavaID(field.getName(),
                                     ObjType.FIELD),
@@ -154,7 +154,7 @@ public class DataTypeTransformer {
                 }
 
                 if(result.getClass().isEnum()) {
-                    result = SpecialFormsUtil.getEnumSpec((Enum)result);
+                    result = SpecialFormsUtil.getEnumSpec(result.getClass());
                 }
                 nameValueMap = nameValueMap.assoc(
                         retrieveKeywordForJavaID(method.getName(), ObjType.METHOD),

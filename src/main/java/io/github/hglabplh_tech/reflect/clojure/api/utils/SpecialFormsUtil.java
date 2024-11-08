@@ -5,6 +5,7 @@ import clojure.lang.*;
 import javax.annotation.Nonnull;
 
 import java.lang.reflect.*;
+import java.util.Optional;
 
 import static io.github.hglabplh_tech.reflect.clojure.api.utils.ClojFunctionalUtils.*;
 import static io.github.hglabplh_tech.reflect.clojure.api.utils.DataTypeTransformer.transformTypeValuesFromMethods;
@@ -30,31 +31,26 @@ public class SpecialFormsUtil {
      * @return the enum specification
      */
     public static @Nonnull  IPersistentMap
-        getEnumSpec(@Nonnull  Object theObject) {
-        Enum theEnum = null;
-        if (theObject.getClass().isEnum()) {
-            theEnum = (Enum) theObject;
+        getEnumSpec(@Nonnull  Class<?> theClass) {
+        Class<? extends Enum>  theEnum = null;
+        if (theClass.isEnum()) {
+            theEnum = (Class<? extends Enum>)theClass;
         } else {
             return PersistentArrayMap.create(PersistentArrayMap.EMPTY)
                     .assocEx(
                             retrieveKeywordForJavaID("e-info-empty", ObjType.CLASS),
                             "empty");
         }
-        Enum[]  enumConsts = theEnum.getClass().getEnumConstants();
+        Enum[]  enumConsts = theEnum.getEnumConstants();
         IPersistentMap enumMap = PersistentArrayMap.EMPTY;
         for (Enum enumC :  enumConsts) {
             String name = enumC.name();
             Integer ordinal = enumC.ordinal();
-            IPersistentMap baseValues = PersistentArrayMap.EMPTY
-                    .assoc(retrieveKeywordForJavaID("name", ObjType.NONE), name)
-                    .assoc(retrieveKeywordForJavaID("ordinal", ObjType.NONE), ordinal);
-            IPersistentMap methValues = transformTypeValuesFromMethods(enumC.getClass().getMethods(),
-                                                    enumC);
-            enumMap = enumMap.assoc(retrieveKeywordForJavaID("enum-base", ObjType.NONE),
-                    baseValues);
-            enumMap = enumMap.assoc(retrieveKeywordForJavaID("e-user-vals", ObjType.NONE),
-                    methValues);
-
+            Optional<Enum.EnumDesc> enumDescrOpt = enumC.describeConstable();
+            if (enumDescrOpt.isPresent()) { // TODO: complete this
+                Enum.EnumDesc description = enumDescrOpt.orElse(null);
+            }
+            enumMap = enumMap.assoc(name, ordinal);
         }
         return enumMap;
 
