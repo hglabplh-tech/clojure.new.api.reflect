@@ -14,3 +14,5 @@ pom.xml.asc
 .cpcache/
 /cloj-new-reflection-api.iml
 /.idea/
+/out
+/.run/
