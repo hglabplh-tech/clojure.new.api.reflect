@@ -12,7 +12,7 @@
    :static true}
   [clazz]
   (let [enum-spec (SpecialFormsUtil/getEnumSpec clazz)]
-    [:enum-spec enum-spec]
+    {:enum-spec enum-spec}
     ))
 
 (defn handle-record

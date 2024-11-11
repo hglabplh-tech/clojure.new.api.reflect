@@ -167,7 +167,7 @@
     @param : Class instance"
     {:added "0.9.0"}
   [clazz]
-         [(rtypes/get-class-attributes clazz)])
+         (rtypes/get-class-attributes clazz))
 
 (defn get-enclosing-constructor
   "Get the enclosing constructor of a subclass

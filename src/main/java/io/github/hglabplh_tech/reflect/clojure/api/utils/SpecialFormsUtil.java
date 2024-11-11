@@ -4,11 +4,17 @@ import clojure.lang.*;
 
 import javax.annotation.Nonnull;
 
+import java.lang.constant.ClassDesc;
+import java.lang.constant.ConstantDesc;
+import java.lang.invoke.MethodHandles;
 import java.lang.reflect.*;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static io.github.hglabplh_tech.reflect.clojure.api.utils.ClojFunctionalUtils.*;
-import static io.github.hglabplh_tech.reflect.clojure.api.utils.DataTypeTransformer.transformTypeValuesFromMethods;
+import static java.lang.invoke.MethodHandles.*;
+import static java.lang.invoke.MethodHandles.Lookup.*;
+
 /**
  * This s a utility class for the types enum, records and 'lambda'
  *
@@ -47,10 +53,21 @@ public class SpecialFormsUtil {
             String name = enumC.name();
             Integer ordinal = enumC.ordinal();
             Optional<Enum.EnumDesc> enumDescrOpt = enumC.describeConstable();
+            IPersistentMap enumAttrMap = PersistentArrayMap
+                    .create(PersistentArrayMap.EMPTY)
+                    .assoc(retrieveKeywordForJavaID("ordinal", ObjType.NONE)
+                            ,ordinal);
             if (enumDescrOpt.isPresent()) { // TODO: complete this
-                Enum.EnumDesc description = enumDescrOpt.orElse(null);
+                Enum.EnumDesc description = enumDescrOpt.get();
+                ClassDesc classDescription = description.constantType();
+                String classDescrString = classDescription.descriptorString();
+                enumAttrMap = enumAttrMap
+                        .assoc(retrieveKeywordForJavaID("class-descr", ObjType.NONE)
+                        ,classDescrString)
+                        .assoc(retrieveKeywordForJavaID("enum-descr", ObjType.NONE),
+                                description.toString());
             }
-            enumMap = enumMap.assoc(name, ordinal);
+            enumMap = enumMap.assoc(name, enumAttrMap);
         }
         return enumMap;
 
@@ -93,7 +110,7 @@ public class SpecialFormsUtil {
      * @return the lambda expression specification
      */
     public @Nonnull IPersistentVector
-        analyzeGeneralLambdaExpr (@Nonnull Class<? > theFunction, String... name) {
+    getGeneralLambdaExprSpec(@Nonnull Class<? > theFunction, String... name) {
         Constructor<?>[] ctors = theFunction.getDeclaredConstructors();
         Method[] methods = theFunction.getDeclaredMethods();
         Method foundMethod = null;
