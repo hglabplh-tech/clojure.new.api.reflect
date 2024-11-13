@@ -18,22 +18,20 @@
   {:body
    {:ctor-infos
     ({:ctor
-      {:excption-types [],
+      {:obj-name
+       "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr",
        :general
        ({:ctor-name
          "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr",
          :parm-types [],
          :modifiers [:public],
          :attribs []}),
-       :parm-types [],
        :parm-annot {},
-       :declaring-class
-       io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr,
-       :gen-exception-types [],
        :annots [],
-       :obj-name
-       "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr",
-       :attr []}}),
+       :excption-types [],
+       :gen-exception-types [],
+       :declaring-class
+       io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr}}),
     :field-infos (),
     :method-infos
     ({:method
@@ -46,8 +44,6 @@
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -57,8 +53,7 @@
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "newDocument",
-       :attr []}}
+       :obj-name "newDocument"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -69,8 +64,6 @@
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -80,8 +73,7 @@
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "retrieveDocument",
-       :attr []}}
+       :obj-name "retrieveDocument"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -92,8 +84,6 @@
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -103,8 +93,7 @@
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "updateDocument",
-       :attr []}}
+       :obj-name "updateDocument"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -115,8 +104,6 @@
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -126,8 +113,7 @@
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "deleteDocument",
-       :attr []}}),
+       :obj-name "deleteDocument"}}),
     :class-infos
     ({:class-info
       {:definition
@@ -139,7 +125,7 @@
          io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr,
          :enclosing-constructor nil,
          :gen-super
-         #object[sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl 0x7942a854 "java.lang.Enum<io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan>"],
+         #object[sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl 0x3ab6678b "java.lang.Enum<io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan>"],
          :attributes [:attr-enum :attr-member],
          :obj-name
          "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr.MyPlan",
@@ -174,7 +160,8 @@
        {:body
         {:ctor-infos
          ({:ctor
-           {:excption-types [],
+           {:obj-name
+            "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan",
             :general
             ({:ctor-name
               "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan",
@@ -185,16 +172,12 @@
                java.lang.String],
               :modifiers [:private],
               :attribs []}),
-            :parm-types
-            [java.lang.String int java.lang.Integer java.lang.String],
             :parm-annot {},
-            :declaring-class
-            io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan,
-            :gen-exception-types [],
             :annots [],
-            :obj-name
-            "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan",
-            :attr []}}),
+            :excption-types [],
+            :gen-exception-types [],
+            :declaring-class
+            io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan}}),
          :field-infos
          ({:field
            {:obj-name "TEST_OK",
@@ -279,7 +262,6 @@
               :attribs [],
               :return-type
               io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan/1}),
-            :parm-types [],
             :return-type
             io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan/1,
             :parm-annot {},
@@ -289,8 +271,7 @@
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "values",
-            :attr []}}
+            :obj-name "values"}}
           {:method
            {:excption-types [],
             :general
@@ -300,7 +281,6 @@
               :attribs [],
               :return-type
               io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan}),
-            :parm-types [java.lang.String],
             :return-type
             io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan,
             :parm-annot {},
@@ -310,8 +290,7 @@
             :gen-parm-types ({}),
             :gen-return-type {},
             :annots [],
-            :obj-name "valueOf",
-            :attr []}}
+            :obj-name "valueOf"}}
           {:method
            {:excption-types [],
             :general
@@ -320,7 +299,6 @@
               :modifiers [:public],
               :attribs [],
               :return-type java.lang.String}),
-            :parm-types [],
             :return-type java.lang.String,
             :parm-annot {},
             :declaring-class
@@ -329,8 +307,7 @@
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "displayName",
-            :attr []}}
+            :obj-name "displayName"}}
           {:method
            {:excption-types [],
             :general
@@ -340,7 +317,6 @@
               :attribs [:attr-synthetic],
               :return-type
               io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan/1}),
-            :parm-types [],
             :return-type
             io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan/1,
             :parm-annot {},
@@ -350,8 +326,7 @@
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "$values",
-            :attr [:attr-synthetic]}}
+            :obj-name "$values"}}
           {:method
            {:excption-types [],
             :general
@@ -360,7 +335,6 @@
               :modifiers [:public],
               :attribs [],
               :return-type java.lang.Integer}),
-            :parm-types [],
             :return-type java.lang.Integer,
             :parm-annot {},
             :declaring-class
@@ -369,8 +343,7 @@
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "codeNum",
-            :attr []}}),
+            :obj-name "codeNum"}}),
          :class-infos ()}}}})}}}}
 {:class-info
  {:definition
@@ -394,22 +367,20 @@
   {:body
    {:ctor-infos
     ({:ctor
-      {:excption-types [],
+      {:obj-name
+       "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase",
        :general
        ({:ctor-name
          "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase",
          :parm-types [],
          :modifiers [:private],
          :attribs []}),
-       :parm-types [],
        :parm-annot {},
-       :declaring-class
-       io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase,
-       :gen-exception-types [],
        :annots [],
-       :obj-name
-       "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase",
-       :attr []}}),
+       :excption-types [],
+       :gen-exception-types [],
+       :declaring-class
+       io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase}}),
     :field-infos (),
     :method-infos
     ({:method
@@ -421,7 +392,6 @@
          :attribs [],
          :return-type
          io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase}),
-       :parm-types [],
        :return-type
        io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase,
        :parm-annot {},
@@ -431,8 +401,7 @@
        :gen-parm-types (),
        :gen-return-type {},
        :annots [],
-       :obj-name "instance",
-       :attr []}}
+       :obj-name "instance"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -443,8 +412,6 @@
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -454,8 +421,7 @@
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "newDocument",
-       :attr []}}
+       :obj-name "newDocument"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -466,8 +432,6 @@
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -477,8 +441,7 @@
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "retrieveDocument",
-       :attr []}}
+       :obj-name "retrieveDocument"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -489,8 +452,6 @@
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -500,8 +461,7 @@
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "updateDocument",
-       :attr []}}
+       :obj-name "updateDocument"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -512,8 +472,6 @@
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -523,8 +481,7 @@
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "deleteDocument",
-       :attr []}}),
+       :obj-name "deleteDocument"}}),
     :class-infos
     ({:class-info
       {:definition
@@ -545,22 +502,20 @@
        {:body
         {:ctor-infos
          ({:ctor
-           {:excption-types [],
+           {:obj-name
+            "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase$TestInner",
             :general
             ({:ctor-name
               "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase$TestInner",
               :parm-types [java.lang.String java.lang.String],
               :modifiers [:public],
               :attribs []}),
-            :parm-types [java.lang.String java.lang.String],
             :parm-annot {},
-            :declaring-class
-            io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase$TestInner,
-            :gen-exception-types [],
             :annots [],
-            :obj-name
-            "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase$TestInner",
-            :attr []}}),
+            :excption-types [],
+            :gen-exception-types [],
+            :declaring-class
+            io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase$TestInner}}),
          :field-infos
          ({:field
            {:obj-name "firstName",
@@ -571,7 +526,7 @@
               :attribs []}),
             :gen-type java.lang.String,
             :annots
-            [#object[jdk.proxy2.$Proxy2 0x59fbb34 "@io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.TransportSpec(sourceType=java.lang.String.class, targetType=java.lang.String.class, transportType=HTTP)"]]}}
+            [#object[jdk.proxy2.$Proxy2 0x5f2de715 "@io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.TransportSpec(sourceType=java.lang.String.class, targetType=java.lang.String.class, transportType=HTTP)"]]}}
           {:field
            {:obj-name "lastName",
             :general
@@ -581,7 +536,7 @@
               :attribs []}),
             :gen-type java.lang.String,
             :annots
-            [#object[jdk.proxy2.$Proxy2 0x73ae0257 "@io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.TransportSpec(sourceType=java.lang.String.class, targetType=java.lang.String.class, transportType=HTTP)"]]}}),
+            [#object[jdk.proxy2.$Proxy2 0x4fd05028 "@io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.TransportSpec(sourceType=java.lang.String.class, targetType=java.lang.String.class, transportType=HTTP)"]]}}),
          :method-infos
          ({:method
            {:excption-types [],
@@ -591,7 +546,6 @@
               :modifiers [:public],
               :attribs [],
               :return-type boolean}),
-            :parm-types [java.lang.Object],
             :return-type boolean,
             :parm-annot {},
             :declaring-class
@@ -600,8 +554,7 @@
             :gen-parm-types ({}),
             :gen-return-type {},
             :annots [],
-            :obj-name "equals",
-            :attr []}}
+            :obj-name "equals"}}
           {:method
            {:excption-types [],
             :general
@@ -610,7 +563,6 @@
               :modifiers [:public],
               :attribs [],
               :return-type java.lang.String}),
-            :parm-types [],
             :return-type java.lang.String,
             :parm-annot {},
             :declaring-class
@@ -619,8 +571,7 @@
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "toString",
-            :attr []}}
+            :obj-name "toString"}}
           {:method
            {:excption-types [],
             :general
@@ -629,7 +580,6 @@
               :modifiers [:public],
               :attribs [],
               :return-type int}),
-            :parm-types [],
             :return-type int,
             :parm-annot {},
             :declaring-class
@@ -638,8 +588,7 @@
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "hashCode",
-            :attr []}}
+            :obj-name "hashCode"}}
           {:method
            {:excption-types [],
             :general
@@ -648,7 +597,6 @@
               :modifiers [:public],
               :attribs [],
               :return-type byte/1}),
-            :parm-types [],
             :return-type byte/1,
             :parm-annot {},
             :declaring-class
@@ -657,8 +605,7 @@
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "getBytes",
-            :attr []}}
+            :obj-name "getBytes"}}
           {:method
            {:excption-types [],
             :general
@@ -667,7 +614,6 @@
               :modifiers [:public],
               :attribs [],
               :return-type java.lang.String}),
-            :parm-types [],
             :return-type java.lang.String,
             :parm-annot {},
             :declaring-class
@@ -676,8 +622,7 @@
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "lastName",
-            :attr []}}
+            :obj-name "lastName"}}
           {:method
            {:excption-types [],
             :general
@@ -686,7 +631,6 @@
               :modifiers [:public],
               :attribs [],
               :return-type java.lang.String}),
-            :parm-types [],
             :return-type java.lang.String,
             :parm-annot {},
             :declaring-class
@@ -695,8 +639,7 @@
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "firstName",
-            :attr []}}),
+            :obj-name "firstName"}}),
          :class-infos ()}}}})}}}}
 {:class-info
  {:definition
@@ -716,22 +659,20 @@
   {:body
    {:ctor-infos
     ({:ctor
-      {:excption-types [],
+      {:obj-name
+       "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyTestRecord",
        :general
        ({:ctor-name
          "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyTestRecord",
          :parm-types [],
          :modifiers [:public],
          :attribs []}),
-       :parm-types [],
        :parm-annot {},
-       :declaring-class
-       io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyTestRecord,
-       :gen-exception-types [],
        :annots [],
-       :obj-name
-       "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyTestRecord",
-       :attr []}}),
+       :excption-types [],
+       :gen-exception-types [],
+       :declaring-class
+       io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyTestRecord}}),
     :field-infos
     ({:field
       {:obj-name "test",
@@ -769,7 +710,6 @@
          :modifiers [:public :final],
          :attribs [],
          :return-type boolean}),
-       :parm-types [java.lang.Object],
        :return-type boolean,
        :parm-annot {},
        :declaring-class
@@ -778,8 +718,7 @@
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "equals",
-       :attr []}}
+       :obj-name "equals"}}
      {:method
       {:excption-types [],
        :general
@@ -788,7 +727,6 @@
          :modifiers [:public :final],
          :attribs [],
          :return-type java.lang.String}),
-       :parm-types [],
        :return-type java.lang.String,
        :parm-annot {},
        :declaring-class
@@ -797,8 +735,7 @@
        :gen-parm-types (),
        :gen-return-type {},
        :annots [],
-       :obj-name "toString",
-       :attr []}}
+       :obj-name "toString"}}
      {:method
       {:excption-types [],
        :general
@@ -807,7 +744,6 @@
          :modifiers [:public :final],
          :attribs [],
          :return-type int}),
-       :parm-types [],
        :return-type int,
        :parm-annot {},
        :declaring-class
@@ -816,8 +752,7 @@
        :gen-parm-types (),
        :gen-return-type {},
        :annots [],
-       :obj-name "hashCode",
-       :attr []}}),
+       :obj-name "hashCode"}}),
     :class-infos ()}}}}
 {:class-info
  {:definition
@@ -837,22 +772,20 @@
   {:body
    {:ctor-infos
     ({:ctor
-      {:excption-types [],
+      {:obj-name
+       "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas",
        :general
        ({:ctor-name
          "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas",
          :parm-types [],
          :modifiers [:private],
          :attribs []}),
-       :parm-types [],
        :parm-annot {},
-       :declaring-class
-       io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas,
-       :gen-exception-types [],
        :annots [],
-       :obj-name
-       "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas",
-       :attr []}}),
+       :excption-types [],
+       :gen-exception-types [],
+       :declaring-class
+       io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas}}),
     :field-infos (),
     :method-infos
     ({:method
@@ -863,7 +796,6 @@
          :modifiers [:public :static],
          :attribs [],
          :return-type java.lang.Object}),
-       :parm-types [java.lang.Object],
        :return-type java.lang.Object,
        :parm-annot {},
        :declaring-class
@@ -872,8 +804,7 @@
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "dealWith",
-       :attr []}}
+       :obj-name "dealWith"}}
      {:method
       {:excption-types [],
        :general
@@ -882,7 +813,6 @@
          :modifiers [:public],
          :attribs [],
          :return-type java.lang.String}),
-       :parm-types [],
        :return-type java.lang.String,
        :parm-annot {},
        :declaring-class
@@ -891,8 +821,7 @@
        :gen-parm-types (),
        :gen-return-type {},
        :annots [],
-       :obj-name "testIt",
-       :attr []}}),
+       :obj-name "testIt"}}),
     :class-infos
     ({:class-info
       {:definition
@@ -908,28 +837,26 @@
          :obj-name
          "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas.FirstOrder",
          :gen-interface
-         [#object[sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl 0x43ecfeb5 "java.util.function.Function<T, R>"]],
+         [#object[sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl 0x161dd92a "java.util.function.Function<T, R>"]],
          :enum-specs {:enum-spec {:cls-e-info-empty-val "empty"}}}},
        :cl-body
        {:body
         {:ctor-infos
          ({:ctor
-           {:excption-types [],
+           {:obj-name
+            "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas$FirstOrder",
             :general
             ({:ctor-name
               "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas$FirstOrder",
               :parm-types [],
               :modifiers [:public],
               :attribs []}),
-            :parm-types [],
             :parm-annot {},
-            :declaring-class
-            io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas$FirstOrder,
-            :gen-exception-types [],
             :annots [],
-            :obj-name
-            "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas$FirstOrder",
-            :attr []}}),
+            :excption-types [],
+            :gen-exception-types [],
+            :declaring-class
+            io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas$FirstOrder}}),
          :field-infos (),
          :method-infos
          ({:method
@@ -940,7 +867,6 @@
               :modifiers [:public],
               :attribs [],
               :return-type java.lang.Object}),
-            :parm-types [java.lang.Object],
             :return-type java.lang.Object,
             :parm-annot {},
             :declaring-class
@@ -949,8 +875,7 @@
             :gen-parm-types ({}),
             :gen-return-type {},
             :annots [],
-            :obj-name "apply",
-            :attr []}}
+            :obj-name "apply"}}
           {:method
            {:excption-types [],
             :general
@@ -959,7 +884,6 @@
               :modifiers [:public],
               :attribs [],
               :return-type java.util.function.Function}),
-            :parm-types [java.util.function.Function],
             :return-type java.util.function.Function,
             :parm-annot {},
             :declaring-class
@@ -968,8 +892,7 @@
             :gen-parm-types ({}),
             :gen-return-type {},
             :annots [],
-            :obj-name "compose",
-            :attr []}}
+            :obj-name "compose"}}
           {:method
            {:excption-types [],
             :general
@@ -978,7 +901,6 @@
               :modifiers [:public],
               :attribs [],
               :return-type java.util.function.Function}),
-            :parm-types [java.util.function.Function],
             :return-type java.util.function.Function,
             :parm-annot {},
             :declaring-class
@@ -987,8 +909,7 @@
             :gen-parm-types ({}),
             :gen-return-type {},
             :annots [],
-            :obj-name "andThen",
-            :attr []}}),
+            :obj-name "andThen"}}),
          :class-infos ()}}}})}}}}
 
 Ran 5 tests containing 1 assertions.
@@ -1016,22 +937,20 @@ nil
   {:body
    {:ctor-infos
     ({:ctor
-      {:excption-types [],
+      {:obj-name
+       "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr",
        :general
        ({:ctor-name
          "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr",
          :parm-types [],
          :modifiers [:public],
          :attribs []}),
-       :parm-types [],
        :parm-annot {},
-       :declaring-class
-       io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr,
-       :gen-exception-types [],
        :annots [],
-       :obj-name
-       "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr",
-       :attr []}}),
+       :excption-types [],
+       :gen-exception-types [],
+       :declaring-class
+       io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr}}),
     :field-infos (),
     :method-infos
     ({:method
@@ -1044,8 +963,6 @@ nil
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -1055,8 +972,7 @@ nil
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "newDocument",
-       :attr []}}
+       :obj-name "newDocument"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -1067,8 +983,6 @@ nil
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -1078,8 +992,7 @@ nil
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "retrieveDocument",
-       :attr []}}
+       :obj-name "retrieveDocument"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -1090,8 +1003,6 @@ nil
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -1101,8 +1012,7 @@ nil
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "updateDocument",
-       :attr []}}
+       :obj-name "updateDocument"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -1113,8 +1023,6 @@ nil
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -1124,8 +1032,7 @@ nil
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "deleteDocument",
-       :attr []}}),
+       :obj-name "deleteDocument"}}),
     :class-infos
     ({:class-info
       {:definition
@@ -1137,7 +1044,7 @@ nil
          io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr,
          :enclosing-constructor nil,
          :gen-super
-         #object[sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl 0x7942a854 "java.lang.Enum<io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan>"],
+         #object[sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl 0x3ab6678b "java.lang.Enum<io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan>"],
          :attributes [:attr-enum :attr-member],
          :obj-name
          "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr.MyPlan",
@@ -1172,7 +1079,8 @@ nil
        {:body
         {:ctor-infos
          ({:ctor
-           {:excption-types [],
+           {:obj-name
+            "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan",
             :general
             ({:ctor-name
               "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan",
@@ -1183,16 +1091,12 @@ nil
                java.lang.String],
               :modifiers [:private],
               :attribs []}),
-            :parm-types
-            [java.lang.String int java.lang.Integer java.lang.String],
             :parm-annot {},
-            :declaring-class
-            io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan,
-            :gen-exception-types [],
             :annots [],
-            :obj-name
-            "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan",
-            :attr []}}),
+            :excption-types [],
+            :gen-exception-types [],
+            :declaring-class
+            io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan}}),
          :field-infos
          ({:field
            {:obj-name "TEST_OK",
@@ -1277,7 +1181,6 @@ nil
               :attribs [],
               :return-type
               io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan/1}),
-            :parm-types [],
             :return-type
             io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan/1,
             :parm-annot {},
@@ -1287,8 +1190,7 @@ nil
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "values",
-            :attr []}}
+            :obj-name "values"}}
           {:method
            {:excption-types [],
             :general
@@ -1298,7 +1200,6 @@ nil
               :attribs [],
               :return-type
               io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan}),
-            :parm-types [java.lang.String],
             :return-type
             io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan,
             :parm-annot {},
@@ -1308,8 +1209,7 @@ nil
             :gen-parm-types ({}),
             :gen-return-type {},
             :annots [],
-            :obj-name "valueOf",
-            :attr []}}
+            :obj-name "valueOf"}}
           {:method
            {:excption-types [],
             :general
@@ -1318,7 +1218,6 @@ nil
               :modifiers [:public],
               :attribs [],
               :return-type java.lang.String}),
-            :parm-types [],
             :return-type java.lang.String,
             :parm-annot {},
             :declaring-class
@@ -1327,8 +1226,7 @@ nil
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "displayName",
-            :attr []}}
+            :obj-name "displayName"}}
           {:method
            {:excption-types [],
             :general
@@ -1338,7 +1236,6 @@ nil
               :attribs [:attr-synthetic],
               :return-type
               io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan/1}),
-            :parm-types [],
             :return-type
             io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBaseAbstr$MyPlan/1,
             :parm-annot {},
@@ -1348,8 +1245,7 @@ nil
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "$values",
-            :attr [:attr-synthetic]}}
+            :obj-name "$values"}}
           {:method
            {:excption-types [],
             :general
@@ -1358,7 +1254,6 @@ nil
               :modifiers [:public],
               :attribs [],
               :return-type java.lang.Integer}),
-            :parm-types [],
             :return-type java.lang.Integer,
             :parm-annot {},
             :declaring-class
@@ -1367,8 +1262,7 @@ nil
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "codeNum",
-            :attr []}}),
+            :obj-name "codeNum"}}),
          :class-infos ()}}}})}}}}
 {:class-info
  {:definition
@@ -1392,22 +1286,20 @@ nil
   {:body
    {:ctor-infos
     ({:ctor
-      {:excption-types [],
+      {:obj-name
+       "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase",
        :general
        ({:ctor-name
          "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase",
          :parm-types [],
          :modifiers [:private],
          :attribs []}),
-       :parm-types [],
        :parm-annot {},
-       :declaring-class
-       io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase,
-       :gen-exception-types [],
        :annots [],
-       :obj-name
-       "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase",
-       :attr []}}),
+       :excption-types [],
+       :gen-exception-types [],
+       :declaring-class
+       io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase}}),
     :field-infos (),
     :method-infos
     ({:method
@@ -1419,7 +1311,6 @@ nil
          :attribs [],
          :return-type
          io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase}),
-       :parm-types [],
        :return-type
        io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase,
        :parm-annot {},
@@ -1429,8 +1320,7 @@ nil
        :gen-parm-types (),
        :gen-return-type {},
        :annots [],
-       :obj-name "instance",
-       :attr []}}
+       :obj-name "instance"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -1441,8 +1331,6 @@ nil
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -1452,8 +1340,7 @@ nil
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "newDocument",
-       :attr []}}
+       :obj-name "newDocument"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -1464,8 +1351,6 @@ nil
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -1475,8 +1360,7 @@ nil
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "retrieveDocument",
-       :attr []}}
+       :obj-name "retrieveDocument"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -1487,8 +1371,6 @@ nil
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -1498,8 +1380,7 @@ nil
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "updateDocument",
-       :attr []}}
+       :obj-name "updateDocument"}}
      {:method
       {:excption-types
        [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentException],
@@ -1510,8 +1391,6 @@ nil
          :modifiers [:public],
          :attribs [],
          :return-type void}),
-       :parm-types
-       [io.github.hglabplh_tech.reflect.clojure.api.example.DocumentExample],
        :return-type void,
        :parm-annot {},
        :declaring-class
@@ -1521,8 +1400,7 @@ nil
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "deleteDocument",
-       :attr []}}),
+       :obj-name "deleteDocument"}}),
     :class-infos
     ({:class-info
       {:definition
@@ -1543,22 +1421,20 @@ nil
        {:body
         {:ctor-infos
          ({:ctor
-           {:excption-types [],
+           {:obj-name
+            "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase$TestInner",
             :general
             ({:ctor-name
               "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase$TestInner",
               :parm-types [java.lang.String java.lang.String],
               :modifiers [:public],
               :attribs []}),
-            :parm-types [java.lang.String java.lang.String],
             :parm-annot {},
-            :declaring-class
-            io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase$TestInner,
-            :gen-exception-types [],
             :annots [],
-            :obj-name
-            "io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase$TestInner",
-            :attr []}}),
+            :excption-types [],
+            :gen-exception-types [],
+            :declaring-class
+            io.github.hglabplh_tech.reflect.clojure.api.example.InterfaceImplBase$TestInner}}),
          :field-infos
          ({:field
            {:obj-name "firstName",
@@ -1569,7 +1445,7 @@ nil
               :attribs []}),
             :gen-type java.lang.String,
             :annots
-            [#object[jdk.proxy2.$Proxy2 0x59fbb34 "@io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.TransportSpec(sourceType=java.lang.String.class, targetType=java.lang.String.class, transportType=HTTP)"]]}}
+            [#object[jdk.proxy2.$Proxy2 0x5f2de715 "@io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.TransportSpec(sourceType=java.lang.String.class, targetType=java.lang.String.class, transportType=HTTP)"]]}}
           {:field
            {:obj-name "lastName",
             :general
@@ -1579,7 +1455,7 @@ nil
               :attribs []}),
             :gen-type java.lang.String,
             :annots
-            [#object[jdk.proxy2.$Proxy2 0x73ae0257 "@io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.TransportSpec(sourceType=java.lang.String.class, targetType=java.lang.String.class, transportType=HTTP)"]]}}),
+            [#object[jdk.proxy2.$Proxy2 0x4fd05028 "@io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.TransportSpec(sourceType=java.lang.String.class, targetType=java.lang.String.class, transportType=HTTP)"]]}}),
          :method-infos
          ({:method
            {:excption-types [],
@@ -1589,7 +1465,6 @@ nil
               :modifiers [:public],
               :attribs [],
               :return-type boolean}),
-            :parm-types [java.lang.Object],
             :return-type boolean,
             :parm-annot {},
             :declaring-class
@@ -1598,8 +1473,7 @@ nil
             :gen-parm-types ({}),
             :gen-return-type {},
             :annots [],
-            :obj-name "equals",
-            :attr []}}
+            :obj-name "equals"}}
           {:method
            {:excption-types [],
             :general
@@ -1608,7 +1482,6 @@ nil
               :modifiers [:public],
               :attribs [],
               :return-type java.lang.String}),
-            :parm-types [],
             :return-type java.lang.String,
             :parm-annot {},
             :declaring-class
@@ -1617,8 +1490,7 @@ nil
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "toString",
-            :attr []}}
+            :obj-name "toString"}}
           {:method
            {:excption-types [],
             :general
@@ -1627,7 +1499,6 @@ nil
               :modifiers [:public],
               :attribs [],
               :return-type int}),
-            :parm-types [],
             :return-type int,
             :parm-annot {},
             :declaring-class
@@ -1636,8 +1507,7 @@ nil
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "hashCode",
-            :attr []}}
+            :obj-name "hashCode"}}
           {:method
            {:excption-types [],
             :general
@@ -1646,7 +1516,6 @@ nil
               :modifiers [:public],
               :attribs [],
               :return-type byte/1}),
-            :parm-types [],
             :return-type byte/1,
             :parm-annot {},
             :declaring-class
@@ -1655,8 +1524,7 @@ nil
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "getBytes",
-            :attr []}}
+            :obj-name "getBytes"}}
           {:method
            {:excption-types [],
             :general
@@ -1665,7 +1533,6 @@ nil
               :modifiers [:public],
               :attribs [],
               :return-type java.lang.String}),
-            :parm-types [],
             :return-type java.lang.String,
             :parm-annot {},
             :declaring-class
@@ -1674,8 +1541,7 @@ nil
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "lastName",
-            :attr []}}
+            :obj-name "lastName"}}
           {:method
            {:excption-types [],
             :general
@@ -1684,7 +1550,6 @@ nil
               :modifiers [:public],
               :attribs [],
               :return-type java.lang.String}),
-            :parm-types [],
             :return-type java.lang.String,
             :parm-annot {},
             :declaring-class
@@ -1693,8 +1558,7 @@ nil
             :gen-parm-types (),
             :gen-return-type {},
             :annots [],
-            :obj-name "firstName",
-            :attr []}}),
+            :obj-name "firstName"}}),
          :class-infos ()}}}})}}}}
 {:class-info
  {:definition
@@ -1714,22 +1578,20 @@ nil
   {:body
    {:ctor-infos
     ({:ctor
-      {:excption-types [],
+      {:obj-name
+       "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyTestRecord",
        :general
        ({:ctor-name
          "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyTestRecord",
          :parm-types [],
          :modifiers [:public],
          :attribs []}),
-       :parm-types [],
        :parm-annot {},
-       :declaring-class
-       io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyTestRecord,
-       :gen-exception-types [],
        :annots [],
-       :obj-name
-       "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyTestRecord",
-       :attr []}}),
+       :excption-types [],
+       :gen-exception-types [],
+       :declaring-class
+       io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyTestRecord}}),
     :field-infos
     ({:field
       {:obj-name "test",
@@ -1767,7 +1629,6 @@ nil
          :modifiers [:public :final],
          :attribs [],
          :return-type boolean}),
-       :parm-types [java.lang.Object],
        :return-type boolean,
        :parm-annot {},
        :declaring-class
@@ -1776,8 +1637,7 @@ nil
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "equals",
-       :attr []}}
+       :obj-name "equals"}}
      {:method
       {:excption-types [],
        :general
@@ -1786,7 +1646,6 @@ nil
          :modifiers [:public :final],
          :attribs [],
          :return-type java.lang.String}),
-       :parm-types [],
        :return-type java.lang.String,
        :parm-annot {},
        :declaring-class
@@ -1795,8 +1654,7 @@ nil
        :gen-parm-types (),
        :gen-return-type {},
        :annots [],
-       :obj-name "toString",
-       :attr []}}
+       :obj-name "toString"}}
      {:method
       {:excption-types [],
        :general
@@ -1805,7 +1663,6 @@ nil
          :modifiers [:public :final],
          :attribs [],
          :return-type int}),
-       :parm-types [],
        :return-type int,
        :parm-annot {},
        :declaring-class
@@ -1814,8 +1671,7 @@ nil
        :gen-parm-types (),
        :gen-return-type {},
        :annots [],
-       :obj-name "hashCode",
-       :attr []}}),
+       :obj-name "hashCode"}}),
     :class-infos ()}}}}
 {:class-info
  {:definition
@@ -1835,22 +1691,20 @@ nil
   {:body
    {:ctor-infos
     ({:ctor
-      {:excption-types [],
+      {:obj-name
+       "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas",
        :general
        ({:ctor-name
          "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas",
          :parm-types [],
          :modifiers [:private],
          :attribs []}),
-       :parm-types [],
        :parm-annot {},
-       :declaring-class
-       io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas,
-       :gen-exception-types [],
        :annots [],
-       :obj-name
-       "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas",
-       :attr []}}),
+       :excption-types [],
+       :gen-exception-types [],
+       :declaring-class
+       io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas}}),
     :field-infos (),
     :method-infos
     ({:method
@@ -1861,7 +1715,6 @@ nil
          :modifiers [:public :static],
          :attribs [],
          :return-type java.lang.Object}),
-       :parm-types [java.lang.Object],
        :return-type java.lang.Object,
        :parm-annot {},
        :declaring-class
@@ -1870,8 +1723,7 @@ nil
        :gen-parm-types ({}),
        :gen-return-type {},
        :annots [],
-       :obj-name "dealWith",
-       :attr []}}
+       :obj-name "dealWith"}}
      {:method
       {:excption-types [],
        :general
@@ -1880,7 +1732,6 @@ nil
          :modifiers [:public],
          :attribs [],
          :return-type java.lang.String}),
-       :parm-types [],
        :return-type java.lang.String,
        :parm-annot {},
        :declaring-class
@@ -1889,8 +1740,7 @@ nil
        :gen-parm-types (),
        :gen-return-type {},
        :annots [],
-       :obj-name "testIt",
-       :attr []}}),
+       :obj-name "testIt"}}),
     :class-infos
     ({:class-info
       {:definition
@@ -1906,28 +1756,26 @@ nil
          :obj-name
          "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas.FirstOrder",
          :gen-interface
-         [#object[sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl 0x43ecfeb5 "java.util.function.Function<T, R>"]],
+         [#object[sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl 0x161dd92a "java.util.function.Function<T, R>"]],
          :enum-specs {:enum-spec {:cls-e-info-empty-val "empty"}}}},
        :cl-body
        {:body
         {:ctor-infos
          ({:ctor
-           {:excption-types [],
+           {:obj-name
+            "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas$FirstOrder",
             :general
             ({:ctor-name
               "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas$FirstOrder",
               :parm-types [],
               :modifiers [:public],
               :attribs []}),
-            :parm-types [],
             :parm-annot {},
-            :declaring-class
-            io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas$FirstOrder,
-            :gen-exception-types [],
             :annots [],
-            :obj-name
-            "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas$FirstOrder",
-            :attr []}}),
+            :excption-types [],
+            :gen-exception-types [],
+            :declaring-class
+            io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas$FirstOrder}}),
          :field-infos (),
          :method-infos
          ({:method
@@ -1938,7 +1786,6 @@ nil
               :modifiers [:public],
               :attribs [],
               :return-type java.lang.Object}),
-            :parm-types [java.lang.Object],
             :return-type java.lang.Object,
             :parm-annot {},
             :declaring-class
@@ -1947,8 +1794,7 @@ nil
             :gen-parm-types ({}),
             :gen-return-type {},
             :annots [],
-            :obj-name "apply",
-            :attr []}}
+            :obj-name "apply"}}
           {:method
            {:excption-types [],
             :general
@@ -1957,7 +1803,6 @@ nil
               :modifiers [:public],
               :attribs [],
               :return-type java.util.function.Function}),
-            :parm-types [java.util.function.Function],
             :return-type java.util.function.Function,
             :parm-annot {},
             :declaring-class
@@ -1966,8 +1811,7 @@ nil
             :gen-parm-types ({}),
             :gen-return-type {},
             :annots [],
-            :obj-name "compose",
-            :attr []}}
+            :obj-name "compose"}}
           {:method
            {:excption-types [],
             :general
@@ -1976,7 +1820,6 @@ nil
               :modifiers [:public],
               :attribs [],
               :return-type java.util.function.Function}),
-            :parm-types [java.util.function.Function],
             :return-type java.util.function.Function,
             :parm-annot {},
             :declaring-class
@@ -1985,6 +1828,5 @@ nil
             :gen-parm-types ({}),
             :gen-return-type {},
             :annots [],
-            :obj-name "andThen",
-            :attr []}}),
+            :obj-name "andThen"}}),
          :class-infos ()}}}})}}}}

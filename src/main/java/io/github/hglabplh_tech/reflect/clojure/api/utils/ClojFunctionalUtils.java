@@ -83,10 +83,10 @@ public class ClojFunctionalUtils {
             } else {
                 resultBuffer.append(character);
             }
+
         }
 
-        return Keyword.intern(resultBuffer
-                .append("-val").toString());
+        return Keyword.intern(resultBuffer.toString());
     }
 
     /**

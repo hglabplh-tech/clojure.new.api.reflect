@@ -55,4 +55,13 @@
       (pprint comp-result)
       )))
 
+(deftest synthetic-class-compile
+  (testing "This is a test for lambda classes / check if compile works"
+    (let  [comp-result
+           (comp/compile-class
+             "io.github.hglabplh_tech.reflect.clojure.api.example.special.CaseInner"
+             )]
+      (pprint comp-result)
+      )))
+
 (run-tests)

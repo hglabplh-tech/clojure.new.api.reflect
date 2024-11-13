@@ -5,12 +5,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value = {ElementType.FIELD, ElementType.METHOD})
+@Target(value = {ElementType.FIELD, ElementType.METHOD, ElementType.TYPE})
 @Retention(value = RetentionPolicy.RUNTIME)
 public @interface TransportSpec {
     Class<?> sourceType() default String.class;
     Class<?> targetType() default String.class;
-    TransportType transportType() default TransportType.HTTP;
+    TransportType transportType() default TransportType.HTTPS;
 
     enum TransportType {
         HTTP,

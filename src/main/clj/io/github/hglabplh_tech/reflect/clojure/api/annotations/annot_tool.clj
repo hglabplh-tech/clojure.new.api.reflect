@@ -24,3 +24,15 @@
     annot-data
     ))
 
+(defn get-annotation-data-from-methods
+  "gets the values defined by an annotation "
+  {
+   :added "1.1.0"
+   :static true
+   }
+  [^java.lang.annotation.Annotation annot]
+  (let [annot-data  (AnnotationTool/retrieveAnnotationValues annot)]
+    ;;(get annot-data :methods-values)
+    annot-data
+    ))
+
