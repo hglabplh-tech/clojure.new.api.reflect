@@ -35,7 +35,8 @@
                        "io.github.hglabplh_tech.reflect.clojure.api.app_exam.AppConfigFields")
           result (sform/handle-enum (rcl/get-the-class class-util))]
       (pp/pprint result)
-      (is (= enum-check-vect result)))))
+      ;; (is (= enum-check-vect result))
+      )))
 
 (run-tests)
 

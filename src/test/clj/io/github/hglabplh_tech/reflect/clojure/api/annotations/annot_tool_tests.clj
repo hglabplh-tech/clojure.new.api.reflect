@@ -1,6 +1,7 @@
 (ns io.github.hglabplh-tech.reflect.clojure.api.annotations.annot-tool-tests
   (:require [clojure.test :refer :all]
             [clojure.pprint :as pp]
+            [clojure.pprint :refer :all]
             [io.github.hglabplh-tech.reflect.clojure.api.reflect-class :as cls]
             [io.github.hglabplh-tech.reflect.clojure.api.reflect-annotation :as refla]
             [io.github.hglabplh-tech.reflect.clojure.api.annotations.annot-tool :as tool])
@@ -20,7 +21,7 @@
           ctors (cls/get-public-ctors cls-util)
           annotations (refla/get-ctor-annots (first ctors))
           annot (get annotations 0)
-          annot-as-cloj  (tool/get-annotation-data-from-methods annot)]
+          annot-as-cloj  (tool/get-annotation-data-vals annot)]
     (pp/pprint annot-as-cloj)
 
     (is (= annot-as-cloj smoke-result))
@@ -31,20 +32,30 @@
   (testing "the expanded retrieve functionality for annotation values"
     (let [cls-util (cls/get-class-util
                      "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.AnnotTestClass")
-          methods (cls/get-all-methods cls-util)
-          annotations (map refla/get-method-annots methods)
-          annot-as-cloj  (map (fn [annots]
-
-                                  (map (fn [annot]
-                                         (if (nil? annot)
-                                           'nil
-                                           (tool/get-annotation-data-from-methods annot)
-                                           ))
-                                       annots)) annotations)
+          all-methods (cls/get-all-methods cls-util)
+          all-fields (cls/get-all-fields cls-util)
+          meth-annots-as-cloj (tool/get-annotation-values-from-method (first all-methods))
+          methods-annots-as-cloj   (tool/get-annotation-values-from-class-methods all-methods)
+          fld-annots-as-cloj (tool/get-annotation-values-from-field (first all-fields))
+          fields-annots-as-cloj   (tool/get-annotation-values-from-class-fields all-fields)
           ]
-      (pp/pprint annot-as-cloj)
+      (pp/pprint meth-annots-as-cloj)
+      (pp/pprint methods-annots-as-cloj)
+      (pp/pprint fld-annots-as-cloj)
+      (pp/pprint fields-annots-as-cloj)
       ;;(is (= annot-as-cloj expanded-res))
       )
     ))
+
+(deftest annotation.annot.reflect
+  (testing "reflect the annotation directly"
+
+    (let [cls-util (cls/get-the-class (cls/get-class-util
+                     "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MethodDescriber"))
+          annot-res (tool/get-annotation-info cls-util)
+          ]
+      (pprint annot-res)
+
+    )))
 
 (run-tests)

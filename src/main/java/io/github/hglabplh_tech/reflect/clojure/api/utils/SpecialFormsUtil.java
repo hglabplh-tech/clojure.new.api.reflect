@@ -88,17 +88,22 @@ public class SpecialFormsUtil {
         } else {
             return PersistentArrayMap.create(PersistentArrayMap.EMPTY);
         }
-        Field[] fields = theRecordClass.getDeclaredFields();
-        DataTypeTransformer.transformTypeValuesFromFields(fields, theObject);
-        Method[] methods = theRecordClass.getDeclaredMethods();
-        IPersistentMap fieldValues = DataTypeTransformer
-                .transformTypeValuesFromFields(fields, theObject);
-        IPersistentMap methValues = DataTypeTransformer
-                .transformTypeValuesFromMethods(methods, theObject);
-        recordMap = recordMap.assoc(retrieveKeywordForJavaID("field-rec-vals", ObjType.NONE),
-                fieldValues);
-        recordMap = recordMap.assoc(retrieveKeywordForJavaID("meth-rec-vals", ObjType.NONE),
-                methValues);
+        Class<?>[] parmTypes = null;
+        Constructor<?>[] ctors = theRecordClass.getDeclaredConstructors();
+        if (ctors.length > 0) {
+             parmTypes = ctors[0].getParameterTypes();
+
+        }
+        if (parmTypes != null) {
+            Method[] methods = theRecordClass.getDeclaredMethods();
+            IPersistentMap methValues = DataTypeTransformer
+                    .transformTypeValuesFromMethods(methods, theObject);
+            if (parmTypes.length == methValues.count()) {
+                recordMap = recordMap.assoc(
+                        retrieveKeywordForJavaID("meth-rec-vals", ObjType.NONE),
+                        methValues);
+            }
+        }
         return recordMap;
     }
 

@@ -1,13 +1,17 @@
 package io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec;
 
+import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 public class AnnotTestClass extends AnnotTestBase implements  HumanResource {
 
+    @CheckForNull
     private final Category theCategory;
 
+    @CheckForNull
     private final EmployeeType emplType;
 
+    @CheckForNull
     private final String name;
 
     public AnnotTestClass(@Nonnull Category category,
