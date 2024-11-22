@@ -82,7 +82,7 @@
         enclosing-class (rcl/get-enclosing-class clazz-util)
         enclosing-ctor (rcl/get-enclosing-constructor clazz-util)
         enclosing-meth (rcl/get-enclosing-method clazz-util)
-        enum-specs (er-refl/handle-enum (rcl/get-the-class clazz-util))]
+        enum-specs (er-refl/analyze-enum (rcl/get-the-class clazz-util))]
     {:class
      {:obj-name class-name
       :attributes attributes

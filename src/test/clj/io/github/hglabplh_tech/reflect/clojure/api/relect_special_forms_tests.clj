@@ -29,14 +29,24 @@
                         :class-descr-val
                         "Lio/github/hglabplh_tech/reflect/clojure/api/example/annot_rec/Category;",
                         :enem-descr-val "EnumDesc[Category.NONE]"}}])
-(deftest enum.handle.test
-  (testing "Here the enum transform is tested"
+(deftest enum.analyze.test
+  (testing "Here the enum reflection transform is tested"
     (let [class-util (rcl/get-class-util
                        "io.github.hglabplh_tech.reflect.clojure.api.app_exam.AppConfigFields")
-          result (sform/handle-enum (rcl/get-the-class class-util))]
+          result (sform/analyze-enum (rcl/get-the-class class-util))]
       (pp/pprint result)
       ;; (is (= enum-check-vect result))
       )))
+
+(deftest record.analyze.test
+  (testing "Here the record reflection transform is tested"
+    (let [class-util (rcl/get-class-util
+                       "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.MyTestRecord")
+          result (sform/analyze-record (rcl/get-the-class class-util))]
+      (pp/pprint result)
+      ;; (is (= enum-check-vect result))
+      )
+    ))
 
 (run-tests)
 

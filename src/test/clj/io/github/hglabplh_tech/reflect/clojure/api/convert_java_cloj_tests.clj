@@ -10,7 +10,7 @@
             presentation to clojure "
     (let [class-util (rcl/get-class-util
                        "io.github.hglabplh_tech.reflect.clojure.api.example.annot_rec.Category")
-          enum-result (enrecla/handle-enum (rcl/get-the-class class-util))]
+          enum-result (enrecla/analyze-enum (rcl/get-the-class class-util))]
           (pprint enum-result)
       )))
 

@@ -1,23 +1,19 @@
 package io.github.hglabplh_tech.reflect.clojure.api.utils;
 
-import clojure.lang.*;
+import clojure.lang.IPersistentMap;
+import clojure.lang.MapEntry;
+import clojure.lang.PersistentArrayMap;
 
 import javax.annotation.Nonnull;
-
 import java.lang.constant.ClassDesc;
-import java.lang.constant.ConstantDesc;
-import java.lang.invoke.MethodHandles;
 import java.lang.reflect.*;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static io.github.hglabplh_tech.reflect.clojure.api.utils.ClojFunctionalUtils.*;
-import static java.lang.invoke.MethodHandles.*;
-import static java.lang.invoke.MethodHandles.Lookup.*;
 
 /**
  * This s a utility class for the types enum, records and 'lambda'
- *
  *
  * @author Harald Glab-Plhak (Harald G.P. IT-Consulting / Projéct Support)
  */
@@ -26,44 +22,45 @@ public class SpecialFormsUtil {
     /**
      * private contructor for all methods are static
      */
-    private SpecialFormsUtil () {
+    private SpecialFormsUtil() {
 
     }
 
     /**
      * This method analyzes the structure and attributes and constants of a enum and
      * returns it as a map
+     *
      * @param theClass the class (it is checked to be an enum class)
      * @return the enum specification
      */
-    public static @Nonnull  IPersistentMap
-        getEnumSpec(@Nonnull  Class<?> theClass) {
-        Class<? extends Enum>  theEnum = null;
+    public static @Nonnull IPersistentMap
+    getEnumSpec(@Nonnull Class<?> theClass) {
+        Class<? extends Enum> theEnum = null;
         if (theClass.isEnum()) {
-            theEnum = (Class<? extends Enum>)theClass;
+            theEnum = (Class<? extends Enum>) theClass;
         } else {
             return PersistentArrayMap.create(PersistentArrayMap.EMPTY)
                     .assocEx(
                             retrieveKeywordForJavaID("e-info-empty", ObjType.CLASS),
                             "empty");
         }
-        Enum[]  enumConsts = theEnum.getEnumConstants();
+        Enum[] enumConsts = theEnum.getEnumConstants();
         IPersistentMap enumMap = PersistentArrayMap.EMPTY;
-        for (Enum enumC :  enumConsts) {
+        for (Enum enumC : enumConsts) {
             String name = enumC.name();
             Integer ordinal = enumC.ordinal();
             Optional<Enum.EnumDesc> enumDescrOpt = enumC.describeConstable();
             IPersistentMap enumAttrMap = PersistentArrayMap
                     .create(PersistentArrayMap.EMPTY)
                     .assoc(retrieveKeywordForJavaID("ordinal", ObjType.NONE)
-                            ,ordinal);
+                            , ordinal);
             if (enumDescrOpt.isPresent()) { // TODO: complete this
                 Enum.EnumDesc description = enumDescrOpt.get();
                 ClassDesc classDescription = description.constantType();
                 String classDescrString = classDescription.descriptorString();
                 enumAttrMap = enumAttrMap
                         .assoc(retrieveKeywordForJavaID("class-descr", ObjType.NONE)
-                        ,classDescrString)
+                                , classDescrString)
                         .assoc(retrieveKeywordForJavaID("enum-descr", ObjType.NONE),
                                 description.toString());
             }
@@ -76,33 +73,45 @@ public class SpecialFormsUtil {
     /**
      * This method analyzes the structure and attributes and constants of a record and
      * returns it as a map
-     * @param theObject the object (it is checked to be a record)
+     *
+     * @param thePotentialRecordClass the class of the record
      * @return the record specification
      */
-    public static @Nonnull  IPersistentMap
-        getRecordSpec(@Nonnull Object theObject) {
+    public static @Nonnull IPersistentMap
+    getRecordSpec(@Nonnull Class<?> thePotentialRecordClass) {
         IPersistentMap recordMap = PersistentArrayMap.create(PersistentArrayMap.EMPTY);
-        Class<? extends  Record> theRecordClass = null;
-        if (theObject.getClass().isRecord()) {
-            theRecordClass = (Class<? extends Record>)theObject.getClass();
+        Class<? extends Record> theRecordClass = null;
+        if (thePotentialRecordClass.isRecord()) {
+            theRecordClass = (Class<? extends Record>) thePotentialRecordClass;
         } else {
             return PersistentArrayMap.create(PersistentArrayMap.EMPTY);
         }
-        Class<?>[] parmTypes = null;
+        Type[] parmTypes = null;
         Constructor<?>[] ctors = theRecordClass.getDeclaredConstructors();
         if (ctors.length > 0) {
-             parmTypes = ctors[0].getParameterTypes();
-
+            parmTypes = ctors[0].getGenericParameterTypes();
+                    recordMap = recordMap.assocEx(
+                    retrieveKeywordForJavaID("ctorParmType", ObjType.NONE),
+                    getArrayAsLazyVector(parmTypes));
         }
         if (parmTypes != null) {
-            Method[] methods = theRecordClass.getDeclaredMethods();
-            IPersistentMap methValues = DataTypeTransformer
-                    .transformTypeValuesFromMethods(methods, theObject);
-            if (parmTypes.length == methValues.count()) {
-                recordMap = recordMap.assoc(
-                        retrieveKeywordForJavaID("meth-rec-vals", ObjType.NONE),
-                        methValues);
+            Field[] fields = theRecordClass.getDeclaredFields();
+            Map<String, Type> nameTypeMap = Arrays.stream(fields)
+                    .collect(Collectors.toMap(Field::getName,
+                            Field::getGenericType, (a, b) -> b));
+            IPersistentMap fieldsTypesMap = PersistentArrayMap.EMPTY;
+            for (Map.Entry<String, Type> nameTypeEntry : nameTypeMap.entrySet()) {
+                Type[] typeArrTemp = {nameTypeEntry.getValue()};
+                recordMap =
+                        recordMap.assocEx(
+                                retrieveKeywordForJavaID(
+                                        nameTypeEntry.getKey(),
+                                        ObjType.NONE),
+                                getArrayAsLazyVector(typeArrTemp));
             }
+
+
+
         }
         return recordMap;
     }
@@ -110,51 +119,45 @@ public class SpecialFormsUtil {
     /**
      * This method analyzes a 'lambda' and returns the attributes and the specification
      * !!!EXPERIMENTAL UP TO NOW!!!
+     *
      * @param theFunction the object (it is checked to be a 'lambda')
-     * @param name the names
+     * @param name        the names
      * @return the lambda expression specification
      */
-    public @Nonnull IPersistentVector
-    getGeneralLambdaExprSpec(@Nonnull Class<? > theFunction, String... name) {
-        Constructor<?>[] ctors = theFunction.getDeclaredConstructors();
+    public static @Nonnull IPersistentMap
+    getGeneralLambdaExprSpec(@Nonnull Class<?> theFunction) {
+        IPersistentMap totalResult = PersistentArrayMap.EMPTY;
+        IPersistentMap theResult = PersistentArrayMap.EMPTY;
+        Constructor<?>[] ctors = theFunction
+                .getDeclaredConstructors();
+        /* look for the ctors*/
         Method[] methods = theFunction.getDeclaredMethods();
-        Method foundMethod = null;
-        for (Method method: methods) {
+        for (Method foundMethod : methods) {
             boolean isStatic =
-                    ((method.getModifiers()
+                    ((foundMethod.getModifiers()
                             & Modifier.STATIC) != 0);
-            if (method.isSynthetic() && isStatic) {
-                if (name.length != 0) {
-                    if(name[0].equals(method.getName())) {
-                        foundMethod = method;
-                        break;
-
-                }
-                } else {
-                foundMethod = method;
-                break;
-                }
+            if (foundMethod.isSynthetic() && isStatic) {
+                Type[] parmTypes = foundMethod.getGenericParameterTypes();
+                Type returnType = foundMethod.getGenericReturnType();
+                Type[] exceptionTypes = foundMethod.getGenericExceptionTypes();
+                IPersistentMap paramTypes = retrieveGenericParamTypesAsMeta(
+                        getArrayAsLazyVector(parmTypes));
+                IPersistentMap exceptTypes = retrieveGenericParamTypesAsMeta(
+                        getArrayAsLazyVector(exceptionTypes));
+                theResult = theResult.assocEx(
+                        retrieveKeywordForJavaID("returnType", ObjType.NONE),
+                        returnType);
+                theResult = theResult.assocEx(
+                        retrieveKeywordForJavaID("paramTypes", ObjType.NONE),
+                        paramTypes);
+                theResult = theResult.assocEx(
+                        retrieveKeywordForJavaID("exceptTypes", ObjType.NONE),
+                        exceptTypes);
+                totalResult = totalResult.assocEx(
+                        retrieveKeywordForJavaID(foundMethod.getName(), ObjType.NONE),
+                        theResult);
             }
         }
-        if (foundMethod != null) {
-            Type[] paramTypes = foundMethod.getGenericParameterTypes();
-            Type returnType = foundMethod.getGenericReturnType();
-            Type[] exceptionTypes = foundMethod.getGenericExceptionTypes();
-            IPersistentMap paramTypesMap = retrieveGenericParamTypesAsMeta(
-                            getArrayAsLazyVector(paramTypes));
-            IPersistentMap exceptTypesMap = retrieveGenericParamTypesAsMeta(
-                    getArrayAsLazyVector(exceptionTypes));
-           IPersistentVector theResult = Tuple.create(
-                   returnType,
-                   paramTypesMap,
-                   exceptTypesMap);
-           return theResult;
-
-        }
-
-        return PersistentVector.EMPTY;
+        return theResult;
     }
-
-
-
 }
