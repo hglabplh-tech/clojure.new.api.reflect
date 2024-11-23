@@ -121,43 +121,53 @@ public class SpecialFormsUtil {
      * !!!EXPERIMENTAL UP TO NOW!!!
      *
      * @param theFunction the object (it is checked to be a 'lambda')
-     * @param name        the names
      * @return the lambda expression specification
      */
     public static @Nonnull IPersistentMap
     getGeneralLambdaExprSpec(@Nonnull Class<?> theFunction) {
         IPersistentMap totalResult = PersistentArrayMap.EMPTY;
-        IPersistentMap theResult = PersistentArrayMap.EMPTY;
         Constructor<?>[] ctors = theFunction
                 .getDeclaredConstructors();
         /* look for the ctors*/
+       for (Constructor<?> construct: ctors) {
+           IPersistentMap theResult = PersistentArrayMap.EMPTY;
+            Parameter[] params = construct.getParameters();
+            theResult = theResult.assocEx(
+                    retrieveKeywordForJavaID("paramTypes", ObjType.NONE),
+                    getArrayAsLazyVector(params));
+            theResult = theResult.assocEx(
+                    retrieveKeywordForJavaID("returnType", ObjType.NONE),
+                    construct.getGenericParameterTypes());
+            totalResult = totalResult.assocEx(
+                    retrieveKeywordForJavaID("ctor", ObjType.NONE),
+                    theResult);
+
+        }
+        /* look for the methods */
         Method[] methods = theFunction.getDeclaredMethods();
         for (Method foundMethod : methods) {
             boolean isStatic =
                     ((foundMethod.getModifiers()
                             & Modifier.STATIC) != 0);
-            if (foundMethod.isSynthetic() && isStatic) {
-                Type[] parmTypes = foundMethod.getGenericParameterTypes();
-                Type returnType = foundMethod.getGenericReturnType();
-                Type[] exceptionTypes = foundMethod.getGenericExceptionTypes();
-                IPersistentMap paramTypes = retrieveGenericParamTypesAsMeta(
-                        getArrayAsLazyVector(parmTypes));
-                IPersistentMap exceptTypes = retrieveGenericParamTypesAsMeta(
-                        getArrayAsLazyVector(exceptionTypes));
+            if (isStatic) {
+                IPersistentMap theResult = PersistentArrayMap.EMPTY;
+                Type[] parmTypes = foundMethod.getParameterTypes();
+                Type returnType = foundMethod.getReturnType();
+                Type[] exceptionTypes = foundMethod.getExceptionTypes();
                 theResult = theResult.assocEx(
                         retrieveKeywordForJavaID("returnType", ObjType.NONE),
                         returnType);
                 theResult = theResult.assocEx(
                         retrieveKeywordForJavaID("paramTypes", ObjType.NONE),
-                        paramTypes);
+                        parmTypes);
                 theResult = theResult.assocEx(
                         retrieveKeywordForJavaID("exceptTypes", ObjType.NONE),
-                        exceptTypes);
+                        exceptionTypes);
                 totalResult = totalResult.assocEx(
                         retrieveKeywordForJavaID(foundMethod.getName(), ObjType.NONE),
                         theResult);
             }
         }
-        return theResult;
+        return totalResult;
     }
 }

@@ -82,7 +82,8 @@
         enclosing-class (rcl/get-enclosing-class clazz-util)
         enclosing-ctor (rcl/get-enclosing-constructor clazz-util)
         enclosing-meth (rcl/get-enclosing-method clazz-util)
-        enum-specs (er-refl/analyze-enum (rcl/get-the-class clazz-util))]
+        enum-specs (er-refl/analyze-enum (rcl/get-the-class clazz-util))
+        record-specs (er-refl/analyze-record (rcl/get-the-class clazz-util))]
     {:class
      {:obj-name class-name
       :attributes attributes
@@ -93,7 +94,9 @@
      :enclosing-class enclosing-class
      :enclosing-constructor enclosing-ctor
      :enclosing-method enclosing-meth
-     :enum-specs enum-specs}}
+     :enum-specs enum-specs
+      :record-specs record-specs}
+      }
     ))
 (defn retrieve-class-body [constructors class-fields class-methods inner-classes]
   (let [ctor-infos (map retrieve-ctor-info constructors)

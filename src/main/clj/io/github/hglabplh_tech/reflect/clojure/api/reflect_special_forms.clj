@@ -23,12 +23,16 @@
    :static true}
   [clazz]
   (let [rec-spec
-        (SpecialFormsUtil/getRecordSpec clazz)]
-    rec-spec)
-  )
+        (if (types/is-record clazz)
+          (SpecialFormsUtil/getRecordSpec clazz)
+          {})
+        result (if (= rec-spec {})
+                 rec-spec
+                 {:record-spec rec-spec})]
+    result))
 
 (defn analyze-lambda
-  "Analyze lambda expressions"
+  "Analyze lambda expressions :: experimental phase // will be enhanced later"
   {:added "1.1.0"
    :static true}
   [clazz]

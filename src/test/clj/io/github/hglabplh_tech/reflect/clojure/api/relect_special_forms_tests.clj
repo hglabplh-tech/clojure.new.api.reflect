@@ -35,10 +35,11 @@
                         "Lio/github/hglabplh_tech/reflect/clojure/api/app_exam/AppConfigFields;",
                         :enum-descr "EnumDesc[AppConfigFields.IP]"}}})
 
-(def record-check-map {:test [java.lang.Integer],
+(def record-check-map {:record-spec
+                       {:test [java.lang.Integer],
                        :first-name [java.lang.String],
                        :last-name [java.lang.String],
-                       :ctor-parm-type [java.lang.Integer java.lang.String java.lang.String]})
+                       :ctor-parm-type [java.lang.Integer java.lang.String java.lang.String]}})
 
 (deftest enum.analyze.test
   (testing "Here the enum reflection transform is tested"
@@ -59,6 +60,14 @@
       )
     ))
 
+(deftest lambda.analyze.test
+  (testing "Here the record reflection transform is tested"
+    (let [class-util (rcl/get-class-util
+                       "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.LambdaCollect")
+          result (sform/analyze-lambda (rcl/get-the-class class-util))]
+      (pp/pprint result)                                    ;; TODO: FIXME: Empty result !!!
+      ;;(is (= record-check-map result))
+      )
+    ))
+
 (run-tests)
-
-
