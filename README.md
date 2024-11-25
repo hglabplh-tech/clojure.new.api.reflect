@@ -7,3 +7,7 @@ in [Java Classpath](https://github.com/clojure/java.classpath) but I needed refl
 which is not natively supported by Clojure up to now. If possible and if the developers are interested I like to contribute it. 
 I just d´started this process.
 
+The classpath.clj is developed by
+;; by Stuart Sierra, http://stuartsierra.com/
+;; April 19, 2009
+
