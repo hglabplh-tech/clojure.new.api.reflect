@@ -1,4 +1,4 @@
-(ns io.github.hglabplh-tech.reflect.clojure.compile.comp-test-data
+(ns io.github.hglabplh-tech.reflect.clojure.code.comp-test-data
   (:require [clojure.test :refer :all]))
 
 (def enum-class-header-data [:compilation

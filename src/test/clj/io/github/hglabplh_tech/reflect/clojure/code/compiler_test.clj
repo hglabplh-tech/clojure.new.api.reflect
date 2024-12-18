@@ -1,9 +1,9 @@
-(ns io.github.hglabplh-tech.reflect.clojure.compile.compiler-test
+(ns io.github.hglabplh-tech.reflect.clojure.code.compiler-test
   (:require [clojure.test :refer :all]
             [clojure.pprint :refer :all]
-            [io.github.hglabplh-tech.reflect.clojure.compile.ast-table-defs :as tdefs]
-            [io.github.hglabplh-tech.reflect.clojure.compile.compiler :as comp]
-            [io.github.hglabplh-tech.reflect.clojure.compile.comp-test-data :as data]
+            [io.github.hglabplh-tech.reflect.clojure.code.ast-table-defs :as tdefs]
+            [io.github.hglabplh-tech.reflect.clojure.code.compile.compiler :as comp]
+            [io.github.hglabplh-tech.reflect.clojure.code.comp-test-data :as data]
             [io.github.hglabplh-tech.reflect.clojure.api.reflect-field :as rfield]
             [io.github.hglabplh-tech.reflect.clojure.api.reflect-class :as rcl] ))
 
