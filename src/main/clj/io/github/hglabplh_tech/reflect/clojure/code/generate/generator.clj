@@ -1,4 +1,4 @@
-(ns io.github.hglabplh-tech.reflect.clojure.compile.generator
+(ns io.github.hglabplh-tech.reflect.clojure.code.generate.generator
   (:require [ io.github.hglabplh-tech.reflect.clojure.api.convert-java-cloj :as convert]))
 
 (declare class-def-gen-hook
