@@ -4,75 +4,82 @@
             [io.github.hglabplh-tech.reflect.clojure.api.reflect-field :as fields]
             [io.github.hglabplh-tech.reflect.clojure.api.reflect-meths-ctors :as meths]
             [io.github.hglabplh-tech.reflect.clojure.api.reflect-special-forms :as er-refl]
-            [io.github.hglabplh-tech.reflect.clojure.api.reflect-types :as types]))
+            [io.github.hglabplh-tech.reflect.clojure.general.cloj-java-represent :as represent]))
 
 (declare retrive-class-info)
 
-(defn retrieve-ctor-info [ctor]
+(defn retrieve-ctor-info
+  "retrieve the information about the constructor of a class like
+   ctor name parameter types annotations attributes modifiers and so on"
+  {:added  "1.1.0"
+   :static true}
+  [ctor]
   (let [ctor-name (meths/get-ctor-name ctor)
         ctor-general (meths/get-all-ctor-and-type-modifiers ctor)
-        ctor-attributes (types/get-ctor-attributes ctor)
-        ctor-parm-types (meths/get-ctor-param-types ctor)
         ctor-annots (annot/get-ctor-annots ctor)
         ctor-p-annots (annot/get-ctor-param-annots ctor)
-        ctor-ex-types (meths/get-ctor-exception-types ctor)
         ctor-generic-ex-types (meths/get-ctor-gen-exception-types ctor)
         ctor-declaring-class (meths/get-ctor-declaring-class ctor)
         ]
     {:ctor
      {:obj-name            ctor-name
       :general             ctor-general
-      :attr                ctor-attributes
-      :parm-types          ctor-parm-types
       :parm-annot          ctor-p-annots
       :annots              ctor-annots
-      :excption-types      ctor-ex-types
       :gen-exception-types ctor-generic-ex-types
       :declaring-class     ctor-declaring-class}}
     ))
 
-(defn retrieve-method-info [method]
+(defn retrieve-method-info
+  "retrieve the information about the method of a class like
+  method name parameter types return types annotations attributes modifiers and so on"
+  {:added  "1.1.0"
+   :static true}
+  [method]
   (let [meth-name (meths/get-meth-name method)
         meth-general (meths/get-all-meth-and-type-modifiers method)
-        meth-attributes (types/get-meth-attributes method)
-        meth-parm-types (meths/get-meth-param-types method)
         meth-generic-parm-types (meths/get-generic-meth-param-types method)
         meth-p-annots (annot/get-meth-param-annots method)
         meth-annots (annot/get-method-annots method)
-        meth-ret-type (meths/get-method-return-type method)
-        meth-generic-ret-type (meths/get-generic-method-return-type method)
-        meth-ex-types (meths/get-meth-exception-types method)
-        meth-generic-ex-types (meths/get-meth-gen-exception-types method)
+        meth-generic-ret-type (represent/type-def-representation
+                                (meths/get-generic-method-return-type method))
+        meth-generic-ex-types (map represent/type-def-representation
+                                (meths/get-meth-gen-exception-types method))
         meth-declaring-class (meths/get-meth-declaring-class method)
         ]
     {:method
      {:obj-name            meth-name
       :general             meth-general
-      :attr                meth-attributes
-      :parm-types          meth-parm-types
       :gen-parm-types      meth-generic-parm-types
       :parm-annot          meth-p-annots :annots meth-annots
-      :return-type         meth-ret-type
       :gen-return-type     meth-generic-ret-type
-      :excption-types      meth-ex-types
       :gen-exception-types meth-generic-ex-types
       :declaring-class     meth-declaring-class}}
     ))
 
-(defn retrieve-field-info [field]
+(defn retrieve-field-info
+  "retrieve the information about the field of a class like
+ field name field type annotations modifiers and generics"
+  {:added  "1.1.0"
+   :static true}
+  [field]
   (let [fld-name (fields/get-field-name field)
         fld-general (fields/get-all-fields-and-type-modifiers field)
         fld-gen-type (fields/get-generic-type field)
         fld-annots (fields/get-all-annots field)
         ]
     {:field
-     { :obj-name fld-name
+     {:obj-name fld-name
       :general  fld-general
       :gen-type fld-gen-type
-     :annots fld-annots}}
+      :annots   fld-annots}}
     ))
 
-(defn retrieve-direct-class-parameters [clazz-util]
+(defn retrieve-direct-class-parameters
+  "retrieve the direct parameters of a constructor or method"
+  {:added  "1.1.0"
+   :static true}
+  [clazz-util]
   (let [class-name (rcl/get-class-name clazz-util)
         attributes (rcl/get-class-attributes (rcl/get-the-class clazz-util))
         interfaces (rcl/get-interfaces clazz-util)
@@ -85,18 +92,18 @@
         enum-specs (er-refl/analyze-enum (rcl/get-the-class clazz-util))
         record-specs (er-refl/analyze-record (rcl/get-the-class clazz-util))]
     {:class
-     {:obj-name class-name
-      :attributes attributes
-     :super super-class
-     :interface interfaces
-     :gen-interface gen-interfaces
-     :gen-super gen-super-class
-     :enclosing-class enclosing-class
-     :enclosing-constructor enclosing-ctor
-     :enclosing-method enclosing-meth
-     :enum-specs enum-specs
-      :record-specs record-specs}
-      }
+     {:obj-name              class-name
+      :attributes            attributes
+      :super                 super-class
+      :interface             interfaces
+      :gen-interface         gen-interfaces
+      :gen-super             gen-super-class
+      :enclosing-class       enclosing-class
+      :enclosing-constructor enclosing-ctor
+      :enclosing-method      enclosing-meth
+      :enum-specs            enum-specs
+      :record-specs          record-specs}
+     }
     ))
 (defn retrieve-class-body [constructors class-fields class-methods inner-classes]
   (let [ctor-infos (map retrieve-ctor-info constructors)
@@ -106,10 +113,10 @@
                            (retrive-class-info (rcl/get-class-util-by-class clazz)))
                          inner-classes)]
 
-    {:body {:ctor-infos ctor-infos
-     :field-infos field-infos
-     :method-infos method-infos
-     :class-infos class-infos}}
+    {:body {:ctor-infos   ctor-infos
+            :field-infos  field-infos
+            :method-infos method-infos
+            :class-infos  class-infos}}
     ))
 
 
@@ -119,8 +126,8 @@
                                         (rcl/get-all-fields clazz-util)
                                         (rcl/get-all-methods clazz-util)
                                         (rcl/get-all-sub-classes clazz-util))]
-    {:class-info
+    {:class-data
      {:definition class-def
       :cl-body
-       class-body}})
+      class-body}})
   )

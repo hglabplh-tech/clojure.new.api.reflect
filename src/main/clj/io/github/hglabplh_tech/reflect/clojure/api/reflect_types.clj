@@ -159,7 +159,7 @@
 
 
 (defn get-type-readable [type-object]
-  (ClassUtil/getValuesOfInterface (class AnnotatedType) type-object))
+  (ClassUtil/getValuesOfInterface type-object))
 
 (defn- get-modifiers-readable
   "Get a readable format with modifiers integer as

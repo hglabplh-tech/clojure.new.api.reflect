@@ -1,5 +1,6 @@
 (ns io.github.hglabplh-tech.reflect.clojure.api.reflect-meths-ctors
-  (:require [io.github.hglabplh-tech.reflect.clojure.api.reflect-types :as rtypes])
+  (:require [io.github.hglabplh-tech.reflect.clojure.api.reflect-types :as rtypes]
+            [io.github.hglabplh-tech.reflect.clojure.general.cloj-java-represent :as represent])
   (:import (io.github.hglabplh_tech.reflect.clojure.api.utils MethsCtorsUtil)))
 
 (defn get-ctor-name
@@ -32,7 +33,8 @@
   {:added  "0.9.0"
    :static true}
   [ctor]
-  (MethsCtorsUtil/getCtorGenericExTypes ctor))
+  (represent/type-def-representation
+    (MethsCtorsUtil/getCtorGenericExTypes ctor)))
 
 (defn get-ctor-param-types
   "Get the constructors parameter types
@@ -62,7 +64,8 @@
           :parm-types (get-ctor-param-types ctor)
           :modifiers  (rtypes/get-item-modifiers
                         (get-ctor-modifier ctor))
-          :attribs    (rtypes/get-ctor-attributes ctor)})
+          :attribs    (rtypes/get-ctor-attributes ctor)
+          :exception-types (get-ctor-exception-types ctor)})
        ctors))
 
 (defn get-ctor-declaring-class
@@ -113,7 +116,7 @@
   {:added  "0.9.0"
    :static true}
   [meth]
-  (map rtypes/get-type-readable (MethsCtorsUtil/getMethGenericParmTypes meth)))
+  (map represent/type-def-representation (MethsCtorsUtil/getMethGenericParmTypes meth)))
 
 (defn get-method-return-type
   "Get the methods return type
@@ -129,7 +132,8 @@
   {:added  "0.9.0"
    :static true}
   [meth]
-  (rtypes/get-type-readable (MethsCtorsUtil/getMethGenericReturnType meth)))
+  (represent/type-def-representation
+    (MethsCtorsUtil/getMethGenericReturnType meth)))
 
 (defn get-method-modifier
   "Get the methods modifier
@@ -138,6 +142,14 @@
    :static true}
   [meth]
   (MethsCtorsUtil/getMethodModifiers meth))
+
+(defn get-meth-exception-types
+  "Get the methods exception types
+  @param : the ctor we look for"
+  {:added  "0.9.0"
+   :static true}
+  [meth]
+  (MethsCtorsUtil/getMethExceptionTypes meth))
 
 (defn get-all-meth-and-type-modifiers
   "Get all the methods modifiers
@@ -151,17 +163,12 @@
           :modifiers  (rtypes/get-item-modifiers
                         (get-method-modifier meth))
           :attribs    (rtypes/get-meth-attributes meth)
+          :exception-types (get-meth-exception-types meth)
           :return-type (get-method-return-type meth)}    ;; ???????????????
          )
        meths))
 
-(defn get-meth-exception-types
-  "Get the methods exception types
-  @param : the ctor we look for"
-  {:added  "0.9.0"
-   :static true}
-  [meth]
-  (MethsCtorsUtil/getMethExceptionTypes meth))
+
 
 (defn get-meth-gen-exception-types
   "Get the methods generic exception types
@@ -169,4 +176,5 @@
   {:added  "0.9.0"
    :static true}
   [meth]
-  (MethsCtorsUtil/getMethGenericExTypes meth))
+  (represent/type-def-representation
+    (MethsCtorsUtil/getMethGenericExTypes meth)))

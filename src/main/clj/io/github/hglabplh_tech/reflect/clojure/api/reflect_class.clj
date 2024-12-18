@@ -70,6 +70,13 @@
   [^ClassUtil util]
   (.getAllMethods util))
 
+(defn get-method-by-name
+  "Get a method by its name declared in the class if it is visible or not
+  @param : ClassUtil instance with the class we analyze"
+  {:added "0.9.0"}
+  [^ClassUtil util ^String methodName]
+  (.getMethodByName util methodName))
+
 (defn get-all-sub-classes
   [^ClassUtil util]
   "Get all subclasses declared in the class if they are visible or not

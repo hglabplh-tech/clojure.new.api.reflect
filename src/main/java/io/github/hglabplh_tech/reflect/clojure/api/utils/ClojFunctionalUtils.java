@@ -7,6 +7,7 @@ import java.lang.reflect.GenericDeclaration;
 import java.lang.reflect.TypeVariable;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
 
 /**
  * This s a utility class for conversion from Java Types to  clojure vectors
@@ -31,6 +32,15 @@ public class ClojFunctionalUtils {
     public static IPersistentVector getArrayAsLazyVector(Object [] arrayContent) {
         IPersistentVector newVector = LazilyPersistentVector.create(arrayContent);
         return newVector;
+    }
+
+    /**
+     *
+     * @param value
+     * @return
+     */
+    public static Consumer<IFn> buildFunConsumer(IFn clojFun) {
+        return (a) -> clojFun.invoke(a);
     }
 
     /**

@@ -47,7 +47,7 @@
   (testing "This is a test for lambda classes / check if compile works"
     (let  [comp-result
            (comp/compile-class
-             "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.MyLambdas"
+             "io.github.hglabplh_tech.reflect.clojure.api.example.lambda.LambdaCollect"
              )]
       (pprint comp-result)
       )))

@@ -1,4 +1,4 @@
-(defproject io.github.hglabplh-tech/cloj-new-reflection-api "1.1.0-SNAPSHOT"
+(defproject org.clojars.hglabplh/cloj-new-reflection-api "1.1.0-SNAPSHOT"
   :description "Clojure Layer for Java reflection with add-ons"
   :url "https://github.com/hglabplh-tech/clojure.new.api.reflect.git"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
@@ -59,15 +59,33 @@
                             :java-source-paths ^:replace []
                             :resource-paths    ^:replace ["javadoc"]}]]
 
-  :codox {:extra-deps {codox/codox {:mvn/version "0.10.8"}}
-          :metadata   {:doc/format :markdown}
+  :codox {:extra-deps {codox/codox                         {:mvn/version "0.10.7" :exclusions [org.ow2.asm/asm-all]}
+                       codox-theme-rdash/codox-theme-rdash {:mvn/version "0.1.2"}
+                       hiccup/hiccup                       {:mvn/version "1.0.5"}
+                       enlive/enlive                       {:mvn/version "1.1.6"}
+                       org.pegdown/pegdown                 {:mvn/version "1.6.0"}
+                       org.ow2.asm/asm-all                 {:mvn/version "5.2"}}
+          :jvm-opts   ["--add-opens" "java.base/java.lang=ALL-UNNAMED"]
           :exec-fn    codox.main/generate-docs
-          :exec-args  {:source-paths ["src/main/clj"]}}
+          :exec-args  {:language    :clojure
+                       :metadata    {:doc/format :markdown}
+                       :themes      [:rdash]
+                       :output-path "docs"}}
   :javadoc-opts {
                  :package-names ["io.github.hglabplh-tech.reflect"]}
 
-  :deploy-repositories [["releases" {:url   "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-                                     :creds :gpg}
-                         "snapshots" {:url   "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-                                      :creds :gpg}]]
+
+  :deploy-repositories [["clojars" {:url "https://repo.clojars.org/"
+                                    :username :env/clojars_username
+                                    :password :env/clojars_password}]]
+  ;;:deploy-repositories
+  ;  [["releases" :clojars]
+  ;["snapshots" :clojars]]
+  ;;:deploy-repositories
+  ;;[["releases" {:url   "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+  ;;            :creds :gpg}
+  ;;"snapshots"
+  ;;  {:url   "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+  ;; :creds :gpg}]]
+
   )
