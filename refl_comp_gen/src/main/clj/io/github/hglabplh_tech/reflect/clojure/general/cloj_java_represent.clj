@@ -7,7 +7,6 @@
                               TypeVariable))
   )
 
-
 (defn get-base-type-representation
   "The representation of the type class as a string"
   [the-type]
@@ -15,7 +14,6 @@
                     (.getTypeName the-type)
                     "N/A")]
     type-name))
-
 
 (defn get-annot-type-representation
   "The representation of the type AnnotationType(Java class) as Clojure Map"
@@ -35,7 +33,7 @@
       )
     {}))
 
-(defn get-parametrized-trespresentation
+(defn get-parametrized-respresentation
   "The representation of the type class as a function"
   [the-type]
   (let [type-class (class the-type)]
@@ -58,19 +56,47 @@
          })
       {})))
 
+(declare get-generic-decl-represent
+         get-type-var-representation)
+
+(defn- get-type-var-representation
+  [the-type index]
+  (instance? TypeVariable the-type)
+  {:type-var-type
+   {:bounds       (map (fn [act-type]
+                         (get-base-type-representation act-type))
+                       (ClojFunctionalUtils/getArrayAsLazyVector
+                         (.getBounds the-type)))
+    :type-name    (.getName the-type)
+
+    :generic-decl (if (=  index 0 )
+                    (get-generic-decl-represent
+                      (.getGenericDeclaration the-type) index)
+                    {})
+    :annot-bounds (map get-annot-type-representation
+                       (ClojFunctionalUtils/getArrayAsLazyVector
+                         (.getAnnotatedBounds the-type)))}})
+
+(defn- get-generic-decl-represent [gen-decl index]
+  (let [decl-type-vect (ClojFunctionalUtils/getArrayAsLazyVector
+                    (.getTypeParameters gen-decl))]
+    (if (empty? decl-type-vect)
+      nil
+      (let [type-var-repr-vect (map
+                                 (fn [act-type]
+                                   (get-type-var-representation act-type 1))
+                                 decl-type-vect)]
+        {:generic-decl-type
+         {:type-var-repr type-var-repr-vect}})
+      )))
+
+
 
 (defn type-def-representation
   "The representation of the type class as function"
   [the-type]
   (cond (instance? TypeVariable the-type)
-        {:type-var-type
-         {:bounds       (map get-base-type-representation
-                             (ClojFunctionalUtils/getArrayAsLazyVector
-                               (.getBounds the-type)))
-          :type-name    (.getName the-type)
-          :annot-bounds (map get-annot-type-representation
-                          (ClojFunctionalUtils/getArrayAsLazyVector
-                          (.getAnnotatedBounds the-type)))}}
+        (get-type-var-representation the-type 0)
         (instance? GenericArrayType the-type)
         (let [type-name (get-base-type-representation the-type)
               comp-type-name (get-base-type-representation
@@ -78,9 +104,6 @@
           {:generic-type {:type-name      type-name
                           :comp-type-name comp-type-name}})
         (instance? ParameterizedType the-type)
-        (get-parametrized-trespresentation the-type)
+        (get-parametrized-respresentation the-type)
         (instance? AnnotatedType the-type)
         (get-annot-type-representation the-type)))
-
-
-

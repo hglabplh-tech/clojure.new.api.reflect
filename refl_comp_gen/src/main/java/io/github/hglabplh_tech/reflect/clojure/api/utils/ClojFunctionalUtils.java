@@ -29,7 +29,7 @@ public class ClojFunctionalUtils {
      * @param arrayContent the array to transform
      * @return the persistence vector with the array-content
      */
-    public static IPersistentVector getArrayAsLazyVector(Object [] arrayContent) {
+    public static <T> IPersistentVector getArrayAsLazyVector(T [] arrayContent) {
         IPersistentVector newVector = LazilyPersistentVector.create(arrayContent);
         return newVector;
     }

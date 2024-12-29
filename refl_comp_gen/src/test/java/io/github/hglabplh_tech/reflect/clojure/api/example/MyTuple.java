@@ -1,6 +1,6 @@
 package io.github.hglabplh_tech.reflect.clojure.api.example;
 
-public class MyTuple<T> {
+public class MyTuple<T extends TheTupleTypeIfc> {
     private final String name;
 
     private final T value;
